@@ -18,13 +18,14 @@ services:
     networks:
       - php-backend
   go-http:
-    image: golang:1.14
-    command: go run cmd/http.go
+    build:
+      context: ./docker/go/http
     working_dir: /go-http
     volumes:
       - ./golang:/go-http
     ports:
       - "3001:80"
+    restart: always
 networks:
   php-backend:
     driver: bridge
