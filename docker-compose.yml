@@ -1,0 +1,21 @@
+version: '3.7'
+
+services:
+  php-http:
+    image: php:fpm-alpine
+    volumes:
+      - ./php:/var/www/html
+    networks:
+      - php-backend
+  nginx-http:
+    build:
+      context: ./docker/nginx
+    volumes:
+      - ./php:/var/www/html
+    ports:
+      - "3000:80"
+    networks:
+      - php-backend
+networks:
+  php-backend:
+    driver: bridge
