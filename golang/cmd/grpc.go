@@ -11,14 +11,17 @@ import (
 	"google.golang.org/grpc/reflection"
 )
 
+// HelloWorld is a simple example server
 type HelloWorld struct {
 	log hclog.Logger
 }
 
+// NewHelloWorldServer builds a new server
 func NewHelloWorldServer(l hclog.Logger) *HelloWorld {
 	return &HelloWorld{l}
 }
 
+// Speak builds a Hello World message as a response
 func (hw *HelloWorld) Speak(ctx context.Context, e *hello.Empty) (*hello.HelloResponse, error) {
 	hw.log.Info("Handle HelloWorld.Speak")
 	return &hello.HelloResponse{Msg: "Hello World"}, nil
