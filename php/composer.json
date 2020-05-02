@@ -1,0 +1,8 @@
+{
+    "name": "davizuku/figonacci-phpactorial",
+    "type": "project",
+    "require": {
+        "slim/slim": "^4.5",
+        "slim/psr7": "^1.0"
+    }
+}

@@ -2,7 +2,8 @@ version: '3.7'
 
 services:
   php-http:
-    image: php:fpm-alpine
+    build:
+      context: ./docker/php
     volumes:
       - ./php:/var/www/html
     networks:
