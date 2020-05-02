@@ -16,6 +16,14 @@ services:
       - "3000:80"
     networks:
       - php-backend
+  go-http:
+    image: golang:1.14
+    command: go run cmd/http.go
+    working_dir: /go-http
+    volumes:
+      - ./golang:/go-http
+    ports:
+      - "3001:80"
 networks:
   php-backend:
     driver: bridge
