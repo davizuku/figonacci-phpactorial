@@ -19,15 +19,16 @@ func main() {
 		logger.Println("Handling GET on route '/'")
 		fmt.Fprintf(res, "(go-http) Hello World\n")
 	})
+	port := "80"
 	server := &http.Server{
-		Addr:         ":80",
+		Addr:         ":" + port,
 		Handler:      router,
 		IdleTimeout:  120 * time.Second,
 		ReadTimeout:  1 * time.Second,
 		WriteTimeout: 1 * time.Second,
 	}
 	go func() {
-		logger.Println("HTTP Server listening on port 3001")
+		logger.Println("HTTP Server listening on port", port)
 		err := server.ListenAndServe()
 		if err != nil {
 			logger.Fatal(err)
