@@ -40,6 +40,7 @@ func main() {
 	signal.Notify(sigChan, os.Kill)
 	sig := <-sigChan
 	logger.Println("Received terminate, graceful shutdown", sig)
-	timeoutCtxt, _ := context.WithTimeout(context.Background(), 30*time.Second)
+	timeoutCtxt, cancel := context.WithTimeout(context.Background(), 30*time.Second)
+	defer cancel()
 	server.Shutdown(timeoutCtxt)
 }
