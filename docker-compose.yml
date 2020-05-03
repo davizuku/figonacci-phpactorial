@@ -2,6 +2,8 @@ version: '3.7'
 
 services:
   php-http:
+    env_file:
+      - ./docker/common.env
     build:
       context: ./docker/php
     volumes:
@@ -18,6 +20,8 @@ services:
     networks:
       - php-backend
   go-http:
+    env_file:
+      - ./docker/common.env
     build:
       context: ./docker/go/http
     working_dir: /go-http
@@ -27,6 +31,8 @@ services:
       - "3001:80"
     restart: always
   go-grpc:
+    env_file:
+      - ./docker/common.env
     build:
       context: ./docker/go/grpc
     working_dir: /go-grpc

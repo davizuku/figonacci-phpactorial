@@ -31,7 +31,15 @@ func main() {
 		if err != nil {
 			http.Error(res, "Invalid 'a' query param", http.StatusBadRequest)
 		}
-		fmt.Fprintf(res, "%d\n", calculator.FibFac(uint64(a)))
+		mod, err := strconv.Atoi(os.Getenv("FIBFAC_MOD"))
+		if err != nil {
+			http.Error(
+				res,
+				"Could not convert FIBFAC_MOD environment variable to integer",
+				http.StatusInternalServerError,
+			)
+		}
+		fmt.Fprintf(res, "%d\n", calculator.FibFac(uint64(a), uint64(mod)))
 	})
 	port := "80"
 	server := &http.Server{

@@ -6,19 +6,19 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Factory\AppFactory;
 
-function fibonacci($x)
+function fibonacci($x, $mod)
 {
     if ($x < 2) {
         return 1;
     }
-    return fibonacci($x - 1) + fibonacci($x - 2);
+    return (fibonacci($x - 1, $mod) + fibonacci($x - 2, $mod)) % $mod;
 }
 
-function factorial($x)
+function factorial($x, $mod)
 {
     $fact = 1;
     foreach (range(1, $x) as $i) {
-        $fact *= $i;
+        $fact = ($fact * $i) % $mod;
     }
     return $fact;
 }
@@ -40,7 +40,8 @@ $app->get(
         $params = $request->getQueryParams();
         $a = $params['a'] ?? null;
         if (!is_null($a)) {
-            $fibFac = fibonacci($a) + factorial($a);
+            $mod = getenv('FIBFAC_MOD');
+            $fibFac = fibonacci($a, $mod) + factorial($a, $mod);
             $response->getBody()->write("$fibFac\n");
         } else {
             $response->withStatus(400);

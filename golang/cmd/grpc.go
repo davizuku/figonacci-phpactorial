@@ -3,6 +3,7 @@ package main
 import (
 	"net"
 	"os"
+	"strconv"
 
 	"github.com/davizuku/figonacci-phpactorial/pkg/benchmark"
 	"github.com/davizuku/figonacci-phpactorial/pkg/hello"
@@ -16,7 +17,11 @@ func main() {
 	gs := grpc.NewServer()
 	hwServer := hello.NewServer(logger)
 	hello.RegisterHelloWorldServer(gs, hwServer)
-	benchServer := benchmark.NewServer(logger)
+	mod, err := strconv.Atoi(os.Getenv("FIBFAC_MOD"))
+	if err != nil {
+		panic("Could not convert FIBFAC_MOD environment variable to integer")
+	}
+	benchServer := benchmark.NewServer(logger, uint64(mod))
 	benchmark.RegisterBenchmarkServer(gs, benchServer)
 	// Enable Reflection API to list the available services in the server
 	reflection.Register(gs)
