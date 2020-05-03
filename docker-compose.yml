@@ -38,6 +38,7 @@ services:
     working_dir: /go-grpc
     volumes:
       - ./golang:/go-grpc
+      - ./php/src/grpc:/php-grpc
     ports:
       - "3002:80"
     restart: always
