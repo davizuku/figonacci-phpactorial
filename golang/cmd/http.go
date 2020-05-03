@@ -10,23 +10,9 @@ import (
 	"strconv"
 	"time"
 
+	"github.com/davizuku/figonacci-phpactorial/internal/calculator"
 	"github.com/gorilla/mux"
 )
-
-func fibonacci(x int) int {
-	if x < 2 {
-		return 1
-	}
-	return fibonacci(x-1) + fibonacci(x-2)
-}
-
-func factorial(x int) int {
-	fact := 1
-	for i := 1; i <= x; i++ {
-		fact *= i
-	}
-	return fact
-}
 
 func main() {
 	logger := log.New(os.Stdout, "go-http", log.LstdFlags)
@@ -45,8 +31,8 @@ func main() {
 		if err != nil {
 			http.Error(res, "Invalid 'a' query param", http.StatusBadRequest)
 		}
-		fib := fibonacci(a)
-		fac := factorial(a)
+		fib := calculator.Fibonacci(uint64(a))
+		fac := calculator.Factorial(uint64(a))
 		fmt.Fprintf(res, "%d", fib+fac)
 	})
 	port := "80"

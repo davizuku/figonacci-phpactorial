@@ -4,6 +4,7 @@ import (
 	context "context"
 	"strconv"
 
+	"github.com/davizuku/figonacci-phpactorial/internal/calculator"
 	"github.com/hashicorp/go-hclog"
 )
 
@@ -20,5 +21,7 @@ func NewServer(l hclog.Logger) *Server {
 // FibFac computes the Fibonacci + Factorial for the given request data
 func (s *Server) FibFac(ctx context.Context, req *FibFacRequest) (*FibFacResponse, error) {
 	s.logger.Info("Handle Benchmark.FibFac for value: " + strconv.FormatUint(req.A, 10))
-	return &FibFacResponse{Value: 1}, nil
+	fib := calculator.Fibonacci(req.A)
+	fac := calculator.Factorial(req.A)
+	return &FibFacResponse{Value: fib + fac}, nil
 }
