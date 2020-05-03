@@ -5,7 +5,7 @@ services:
     env_file:
       - ./docker/common.env
     build:
-      context: ./docker/php
+      context: ./docker/php/http
     volumes:
       - ./php:/var/www/html
     networks:
