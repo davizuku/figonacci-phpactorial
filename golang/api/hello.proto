@@ -1,5 +1,6 @@
 syntax = "proto3";
 
+option php_namespace="GRPC\\Hello";
 option go_package=".;hello";
 
 service HelloWorld {

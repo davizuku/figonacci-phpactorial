@@ -3,6 +3,13 @@
     "type": "project",
     "require": {
         "slim/slim": "^4.5",
-        "slim/psr7": "^1.0"
+        "slim/psr7": "^1.0",
+        "grpc/grpc": "^1.27"
+    },
+    "autoload": {
+        "psr-4": {
+            "FigonacciPhpactorial\\Client": "client",
+            "FigonacciPhpactorial\\": "src"
+        }
     }
 }

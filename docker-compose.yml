@@ -1,6 +1,16 @@
 version: '3.7'
 
 services:
+  client:
+    build:
+      context: ./docker/php/client
+    env_file:
+      - ./docker/common.env
+    command: tail -f /dev/null
+    working_dir: /client
+    volumes:
+      - ./php:/client
+      - ./golang/api:/protos
   php-http:
     env_file:
       - ./docker/common.env
@@ -38,7 +48,6 @@ services:
     working_dir: /go-grpc
     volumes:
       - ./golang:/go-grpc
-      - ./php/src/grpc:/php-grpc
     ports:
       - "3002:80"
     restart: always
