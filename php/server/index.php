@@ -39,9 +39,8 @@ $app->get(
     function (Request $request, Response $response) {
         $params = $request->getQueryParams();
         $a = $params['a'] ?? null;
-        $b = $params['b'] ?? null;
-        if (!is_null($a) && !is_null($b)) {
-            $fibFac = fibonacci($a) + factorial($b);
+        if (!is_null($a)) {
+            $fibFac = fibonacci($a) + factorial($a);
             $response->getBody()->write("$fibFac");
         } else {
             $response->withStatus(400);

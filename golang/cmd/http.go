@@ -45,16 +45,8 @@ func main() {
 		if err != nil {
 			http.Error(res, "Invalid 'a' query param", http.StatusBadRequest)
 		}
-		paramsB, ok := req.URL.Query()["b"]
-		if !ok || len(paramsB) != 1 {
-			http.Error(res, "Invalid or missing 'b' query param", http.StatusBadRequest)
-		}
-		b, err := strconv.Atoi(paramsB[0])
-		if err != nil {
-			http.Error(res, "Invalid 'b' query param", http.StatusBadRequest)
-		}
 		fib := fibonacci(a)
-		fac := factorial(b)
+		fac := factorial(a)
 		fmt.Fprintf(res, "%d", fib+fac)
 	})
 	port := "80"
