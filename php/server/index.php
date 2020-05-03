@@ -41,7 +41,7 @@ $app->get(
         $a = $params['a'] ?? null;
         if (!is_null($a)) {
             $fibFac = fibonacci($a) + factorial($a);
-            $response->getBody()->write("$fibFac");
+            $response->getBody()->write("$fibFac\n");
         } else {
             $response->withStatus(400);
         }
