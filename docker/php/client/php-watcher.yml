@@ -1,0 +1,5 @@
+executable: bash
+watch:
+  - /protos
+extensions:
+  - proto

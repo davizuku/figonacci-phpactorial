@@ -6,7 +6,6 @@ services:
       context: ./docker/php/client
     env_file:
       - ./docker/common.env
-    command: tail -f /dev/null
     working_dir: /client
     volumes:
       - ./php:/client
