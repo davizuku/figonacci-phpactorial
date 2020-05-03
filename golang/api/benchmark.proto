@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option go_package=".;benchmark";
+
+service Benchmark {
+    rpc FibFac(FibFacRequest) returns (FibFacResponse);
+}
+
+message FibFacRequest {
+    uint64 A = 1;
+}
+
+message FibFacResponse {
+    uint64 Value = 1;
+}

@@ -4,6 +4,7 @@ import (
 	"net"
 	"os"
 
+	"github.com/davizuku/figonacci-phpactorial/pkg/benchmark"
 	"github.com/davizuku/figonacci-phpactorial/pkg/hello"
 	"github.com/hashicorp/go-hclog"
 	"google.golang.org/grpc"
@@ -15,6 +16,8 @@ func main() {
 	gs := grpc.NewServer()
 	hwServer := hello.NewServer(logger)
 	hello.RegisterHelloWorldServer(gs, hwServer)
+	benchServer := benchmark.NewServer(logger)
+	benchmark.RegisterBenchmarkServer(gs, benchServer)
 	// Enable Reflection API to list the available services in the server
 	reflection.Register(gs)
 	port := "80"
