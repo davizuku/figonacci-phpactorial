@@ -31,9 +31,7 @@ func main() {
 		if err != nil {
 			http.Error(res, "Invalid 'a' query param", http.StatusBadRequest)
 		}
-		fib := calculator.Fibonacci(uint64(a))
-		fac := calculator.Factorial(uint64(a))
-		fmt.Fprintf(res, "%d", fib+fac)
+		fmt.Fprintf(res, "%d\n", calculator.FibFac(uint64(a)))
 	})
 	port := "80"
 	server := &http.Server{

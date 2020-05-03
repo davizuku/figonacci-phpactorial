@@ -16,3 +16,8 @@ func Factorial(x uint64) uint64 {
 	}
 	return fact
 }
+
+// FibFac computes efficiently Fibonacci(x) + Factorial(x)
+func FibFac(x uint64) uint64 {
+	return Fibonacci(x) + Factorial(x)
+}
