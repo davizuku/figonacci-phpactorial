@@ -17,7 +17,7 @@ function fibonacci($x)
 function factorial($x)
 {
     $fact = 1;
-    foreach (range(1, $x + 1) as $i) {
+    foreach (range(1, $x) as $i) {
         $fact *= $i;
     }
     return $fact;
