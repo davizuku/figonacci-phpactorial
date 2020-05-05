@@ -12,6 +12,11 @@ install:	## Install the dependencies
 .PHONY: down
 down:		## Stop the containers
 	@docker-compose down
+
+.PHONY: benchmark
+benchmark: 	## Execute benchmark
+	@docker-compose exec client php benchmark.php
+
 .PHONY: test
 test: test-php-http test-go-http test-go-grpc		## Execute test
 
