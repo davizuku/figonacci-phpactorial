@@ -7,6 +7,7 @@ use FigonacciPhpactorial\Calculators\Fibonacci;
 
 class LocalClient
 {
+    /** @var int */
     protected $mod;
 
     public function __construct(int $mod)
