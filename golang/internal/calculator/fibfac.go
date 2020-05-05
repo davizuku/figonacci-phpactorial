@@ -27,7 +27,7 @@ func FibFac(x uint64, mod uint64) uint64 {
 		results <- Factorial(x, mod)
 	}()
 	fibFac := <-results
-	fibFac += <-results
+	fibFac = (fibFac + <-results) % mod
 	close(results)
 	return fibFac
 }

@@ -28,7 +28,7 @@ $app->get(
             $mod = getenv('FIBFAC_MOD');
             $fib = new Fibonacci();
             $fac = new Factorial();
-            $fibFac = $fib($a, $mod) + $fac($a, $mod);
+            $fibFac = ($fib($a, $mod) + $fac($a, $mod) % $mod);
             $response->getBody()->write("$fibFac\n");
         } else {
             $response->withStatus(400);
