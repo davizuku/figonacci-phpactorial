@@ -19,14 +19,18 @@ func Factorial(x uint64, mod uint64) uint64 {
 
 // FibFac computes efficiently Fibonacci(x) + Factorial(x)
 func FibFac(x uint64, mod uint64) uint64 {
-	results := make(chan uint64, 2)
+	results := make(chan uint64, 3)
 	go func() {
-		results <- Fibonacci(x, mod)
+		results <- Fibonacci(x-1, mod)
+	}()
+	go func() {
+		results <- Fibonacci(x-2, mod)
 	}()
 	go func() {
 		results <- Factorial(x, mod)
 	}()
 	fibFac := <-results
+	fibFac = (fibFac + <-results) % mod
 	fibFac = (fibFac + <-results) % mod
 	close(results)
 	return fibFac
