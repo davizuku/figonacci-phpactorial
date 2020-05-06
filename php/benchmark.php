@@ -18,11 +18,8 @@ array_walk(
     $clients,
     function (ClientInterface $c, string $name) {
         $t0 = microtime(true);
-        $hello = $c->helloWorld();
-        $t1 = microtime(true);
         $fibFac = $c->fibFac(10);
-        $t2 = microtime(true);
-        echo "$name - HelloWorld: '$hello' ... \t" . ($t1-$t0) . "s\n";
-        echo "$name - FibFac: '$fibFac' ... \t" . ($t2-$t1) . "s\n";
+        $t1 = microtime(true);
+        echo "$name - FibFac: '$fibFac' ... \t" . ($t1-$t0) . "s\n";
     }
 );
