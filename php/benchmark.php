@@ -6,8 +6,7 @@ use FigonacciPhpactorial\Client\LocalClient;
 
 include __DIR__ . '/vendor/autoload.php';
 
-$mod = getenv('FIBFAC_MOD');
-$local = new LocalClient($mod);
+$local = new LocalClient(getenv('FIBFAC_MOD'));
 $httpPhp = new HttpClient('http://nginx-http');
 $httpGo = new HttpClient('http://go-http');
 $grpcGo = new GrpcClient('go-grpc:80');
