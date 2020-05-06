@@ -10,7 +10,9 @@
     "autoload": {
         "psr-4": {
             "FigonacciPhpactorial\\Client\\": "client",
-            "FigonacciPhpactorial\\": "src"
+            "FigonacciPhpactorial\\": "src",
+            "GRPC\\": "src/GRPC",
+            "GPBMetadata\\": "src/GPBMetadata"
         }
     }
 }
