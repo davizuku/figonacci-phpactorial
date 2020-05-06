@@ -5,7 +5,7 @@ namespace FigonacciPhpactorial\Client;
 use FigonacciPhpactorial\Calculators\Factorial;
 use FigonacciPhpactorial\Calculators\Fibonacci;
 
-class LocalClient
+class LocalClient implements ClientInterface
 {
     /** @var int */
     protected $mod;

@@ -4,7 +4,7 @@ namespace FigonacciPhpactorial\Client;
 
 use GuzzleHttp\Client as GuzzleClient;
 
-class HttpClient
+class HttpClient implements ClientInterface
 {
     /** @var GuzzleClient */
     protected $guzzle;
