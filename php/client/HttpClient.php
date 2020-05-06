@@ -23,6 +23,6 @@ class HttpClient
     public function fibFac(int $x): float
     {
         $response = $this->guzzle->get('/fibfac', ['query' => ['a' => $x]]);
-        return (float) $response->getBody();
+        return (string) $response->getBody();
     }
 }
