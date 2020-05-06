@@ -15,7 +15,7 @@ $errorMiddleware = $app->addErrorMiddleware(true, true, true);
 $app->get(
     '/',
     function (Request $request, Response $response) {
-        $response->getBody()->write("(php-http) Hello World\n");
+        $response->getBody()->write("Hello World");
         return $response;
     }
 );

@@ -19,7 +19,7 @@ func main() {
 	router := mux.NewRouter()
 	router.HandleFunc("/", func(res http.ResponseWriter, req *http.Request) {
 		logger.Println("Handling GET on route '/'")
-		fmt.Fprintf(res, "(go-http) Hello World\n")
+		fmt.Fprintf(res, "Hello World")
 	})
 	router.HandleFunc("/fibfac", func(res http.ResponseWriter, req *http.Request) {
 		logger.Println("Handling GET on route '/fibfac'")
