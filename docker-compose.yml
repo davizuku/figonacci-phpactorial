@@ -10,6 +10,8 @@ services:
     volumes:
       - ./php:/client
       - ./golang/api:/protos
+    networks:
+      - benchmark
   php-http:
     env_file:
       - ./docker/common.env
@@ -28,6 +30,7 @@ services:
       - "3000:80"
     networks:
       - php-backend
+      - benchmark
   go-http:
     env_file:
       - ./docker/common.env
@@ -38,6 +41,8 @@ services:
       - ./golang:/go-http
     ports:
       - "3001:80"
+    networks:
+      - benchmark
     restart: always
   go-grpc:
     env_file:
@@ -49,7 +54,11 @@ services:
       - ./golang:/go-grpc
     ports:
       - "3002:80"
+    networks:
+      - benchmark
     restart: always
 networks:
   php-backend:
+    driver: bridge
+  benchmark:
     driver: bridge
