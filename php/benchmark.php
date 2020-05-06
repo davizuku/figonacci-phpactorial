@@ -21,4 +21,3 @@ echo "Local FibFac: '{$local->fibFac(10)}'\n";
 echo "HTTP PHP FibFac: '{$httpPhp->fibFac(10)}'\n";
 echo "HTTP GO FibFac: '{$httpGo->fibFac(10)}'\n";
 echo "GRPC GO FibFac: '{$grpcGo->fibFac(10)}'\n";
-echo "\n-------------\n\n";
