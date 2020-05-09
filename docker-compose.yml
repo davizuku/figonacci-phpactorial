@@ -39,6 +39,7 @@ services:
     working_dir: /go-http
     volumes:
       - ./golang:/go-http
+      - ./php:/php-code
     ports:
       - "3001:80"
     networks:
