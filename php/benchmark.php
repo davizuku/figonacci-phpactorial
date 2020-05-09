@@ -18,13 +18,22 @@ $clients = [
     'grpcGoPhp' => new GrpcPhpClient('go-grpc:80'),
 ];
 
-array_walk(
-    $clients,
-    function (ClientInterface $c, string $name) {
-        $t0 = microtime(true);
-        $fibFac = $c->fibFac(10);
-        $t1 = microtime(true);
-        $padName = str_pad($name, 10, ' ');
-        echo "$padName\t$fibFac\t" . ($t1-$t0) . "s\n";
+$headers = ['architecture', 'method', 'param', 'value', 'time'];
+echo implode(',', $headers) . "\n";
+
+$epochs = 10;
+$values = range(1, 10);
+$architectures = array_keys($clients);
+
+foreach (range(1, $epochs) as $iter) {
+    shuffle($values);
+    shuffle($architectures);
+    foreach ($values as $v) {
+        foreach ($architectures as $arch) {
+            $t0 = microtime(true);
+            $fibFac = $clients[$arch]->fibFac($v);
+            $t1 = microtime(true);
+            echo implode(',', [$arch, 'fibFac', $v, $fibFac, $t1 - $t0]) . "\n";
+        }
     }
-);
+}
