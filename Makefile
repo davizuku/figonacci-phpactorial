@@ -15,7 +15,7 @@ down:		## Stop the containers
 
 .PHONY: benchmark
 benchmark: 	## Execute benchmark
-	@docker-compose exec client php benchmark.php
+	@docker-compose exec client php benchmark.php --epochs 1 --max_value 20
 
 .PHONY: test
 test: test-php-http test-go-http test-go-grpc		## Execute test

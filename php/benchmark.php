@@ -9,6 +9,10 @@ use FigonacciPhpactorial\Client\LocalClient;
 
 include __DIR__ . '/vendor/autoload.php';
 
+$options = getopt('', ['epochs:', 'max_value:']);
+$epochs = $options['epochs'] ?? 1;
+$maxValue = $options['max_value'] ?? 1;
+
 $clients = [
     'localPhp' => new LocalClient(getenv('FIBFAC_MOD')),
     'httpPhp' => new HttpClient('http://nginx-http'),
@@ -21,8 +25,7 @@ $clients = [
 $headers = ['architecture', 'method', 'param', 'value', 'time'];
 echo implode(',', $headers) . "\n";
 
-$epochs = 10;
-$values = range(1, 10);
+$values = range(1, $maxValue);
 $architectures = array_keys($clients);
 
 foreach (range(1, $epochs) as $iter) {
