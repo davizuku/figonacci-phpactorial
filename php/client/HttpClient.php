@@ -25,4 +25,10 @@ class HttpClient implements ClientInterface
         $response = $this->guzzle->get('/fibfac', ['query' => ['a' => $x]]);
         return (string) $response->getBody();
     }
+
+    public function fibFacPhp(int $x): float
+    {
+        $response = $this->guzzle->get('/fibfac-php', ['query' => ['a' => $x]]);
+        return (string) $response->getBody();
+    }
 }

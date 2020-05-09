@@ -48,4 +48,16 @@ class GrpcClient implements ClientInterface
         }
         return $response->getValue();
     }
+
+    public function fibFacPhp(int $x): float
+    {
+        $request = new FibFacRequest();
+        $request->setA($x);
+        /** @var \GRPC\Benchmark\FibFacResponse $response */
+        list($response, $status) = $this->fibFacClient->FibFacPhp($request)->wait();
+        if ($status->code !== 0) {
+            throw new Exception($status->details, $status->code);
+        }
+        return $response->getValue();
+    }
 }
