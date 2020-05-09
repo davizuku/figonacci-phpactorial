@@ -20,6 +20,9 @@ RUN go get github.com/fullstorydev/grpcurl
 RUN go install github.com/fullstorydev/grpcurl/cmd/grpcurl
 ENV GO111MODULE=on
 
+# Install PHP for using php from GoLang as a part of the benchmarking
+RUN apt-get update -y && apt-get install -y php
+
 COPY reflex.conf /
 
 ENTRYPOINT ["reflex", "-c", "/reflex.conf"]
