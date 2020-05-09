@@ -29,4 +29,17 @@ class BenchmarkClient extends \Grpc\BaseStub {
         $metadata, $options);
     }
 
+    /**
+     * @param \GRPC\Benchmark\FibFacRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function FibFacPhp(\GRPC\Benchmark\FibFacRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/Benchmark/FibFacPhp',
+        $argument,
+        ['\GRPC\Benchmark\FibFacResponse', 'decode'],
+        $metadata, $options);
+    }
+
 }

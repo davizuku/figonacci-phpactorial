@@ -5,6 +5,7 @@ option go_package=".;benchmark";
 
 service Benchmark {
     rpc FibFac(FibFacRequest) returns (FibFacResponse);
+    rpc FibFacPhp(FibFacRequest) returns (FibFacResponse);
 }
 
 message FibFacRequest {

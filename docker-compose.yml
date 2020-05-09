@@ -53,6 +53,7 @@ services:
     working_dir: /go-grpc
     volumes:
       - ./golang:/go-grpc
+      - ./php:/php-code
     ports:
       - "3002:80"
     networks:
