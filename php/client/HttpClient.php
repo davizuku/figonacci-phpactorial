@@ -6,6 +6,8 @@ use GuzzleHttp\Client as GuzzleClient;
 
 class HttpClient implements ClientInterface
 {
+    static protected $path = '/fibfac';
+
     /** @var GuzzleClient */
     protected $guzzle;
 
@@ -22,13 +24,7 @@ class HttpClient implements ClientInterface
 
     public function fibFac(int $x): float
     {
-        $response = $this->guzzle->get('/fibfac', ['query' => ['a' => $x]]);
-        return (string) $response->getBody();
-    }
-
-    public function fibFacPhp(int $x): float
-    {
-        $response = $this->guzzle->get('/fibfac-php', ['query' => ['a' => $x]]);
+        $response = $this->guzzle->get(static::$path, ['query' => ['a' => $x]]);
         return (string) $response->getBody();
     }
 }

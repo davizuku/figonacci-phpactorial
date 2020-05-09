@@ -10,6 +10,8 @@ use GRPC\Hello\PBEmpty;
 
 class GrpcClient implements ClientInterface
 {
+    static protected $method = 'fibFac';
+
     /** @var HelloWorldClient */
     protected $helloClient;
 
@@ -42,19 +44,9 @@ class GrpcClient implements ClientInterface
         $request = new FibFacRequest();
         $request->setA($x);
         /** @var \GRPC\Benchmark\FibFacResponse $response */
-        list($response, $status) = $this->fibFacClient->FibFac($request)->wait();
-        if ($status->code !== 0) {
-            throw new Exception($status->details, $status->code);
-        }
-        return $response->getValue();
-    }
-
-    public function fibFacPhp(int $x): float
-    {
-        $request = new FibFacRequest();
-        $request->setA($x);
+        $grpcCall = call_user_func([$this->fibFacClient, static::$method], $request);
         /** @var \GRPC\Benchmark\FibFacResponse $response */
-        list($response, $status) = $this->fibFacClient->FibFacPhp($request)->wait();
+        list($response, $status) = $grpcCall->wait();
         if ($status->code !== 0) {
             throw new Exception($status->details, $status->code);
         }

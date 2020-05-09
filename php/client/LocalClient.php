@@ -26,9 +26,4 @@ class LocalClient implements ClientInterface
         $fac = new Factorial();
         return $fib($x, $this->mod) + $fac($x, $this->mod);
     }
-
-    public function fibFacPhp(int $x): float
-    {
-        return $this->fibFac($x);
-    }
 }

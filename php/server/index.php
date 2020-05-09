@@ -24,5 +24,4 @@ $app->get(
     }
 );
 $app->get('/fibfac', FibFacController::class);
-$app->get('/fibfac-php', FibFacController::class);
 $app->run();
