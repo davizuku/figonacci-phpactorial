@@ -1,0 +1,7 @@
+architecture,method,param,value,time
+httpGoPhp,fibFac,1,2,0.31656217575073
+httpGo,fibFac,1,2,0.010581016540527
+httpPhp,fibFac,1,2,1.4311718940735
+grpcGo,fibFac,1,2,0.051582098007202
+localPhp,fibFac,1,2,0.016330003738403
+grpcGoPhp,fibFac,1,2,0.19651484489441

@@ -59,6 +59,13 @@ services:
     networks:
       - benchmark
     restart: always
+  painter:
+    build:
+      context: ./docker/python
+    working_dir: /painter
+    volumes:
+      - ./python:/painter
+      - ./benchmarks:/data
 networks:
   php-backend:
     driver: bridge
