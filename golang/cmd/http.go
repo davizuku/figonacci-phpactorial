@@ -19,11 +19,11 @@ func main() {
 	logger := log.New(os.Stdout, "go-http", log.LstdFlags)
 	router := mux.NewRouter()
 	router.HandleFunc("/", func(res http.ResponseWriter, req *http.Request) {
-		logger.Println("Handling GET on route '/'")
+		logger.Println("Handling GET on route:", req.RequestURI)
 		fmt.Fprintf(res, "Hello World")
 	})
 	router.HandleFunc("/fibfac", func(res http.ResponseWriter, req *http.Request) {
-		logger.Println("Handling GET on route '/fibfac'")
+		logger.Println("Handling GET on route:", req.RequestURI)
 		paramsA, ok := req.URL.Query()["a"]
 		if !ok || len(paramsA) != 1 {
 			http.Error(res, "Invalid or missing 'a' query param", http.StatusBadRequest)
@@ -43,7 +43,7 @@ func main() {
 		fmt.Fprintf(res, "%d\n", calculator.FibFac(uint64(a), uint64(mod)))
 	})
 	router.HandleFunc("/fibfac-php", func(res http.ResponseWriter, req *http.Request) {
-		logger.Println("Handling GET on route '/fibfac-php'")
+		logger.Println("Handling GET on route:", req.RequestURI)
 		paramsA, ok := req.URL.Query()["a"]
 		if !ok || len(paramsA) != 1 {
 			http.Error(res, "Invalid or missing 'a' query param", http.StatusBadRequest)
