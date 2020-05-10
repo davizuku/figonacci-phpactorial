@@ -4,6 +4,7 @@ include __DIR__ . '/../vendor/autoload.php';
 
 use DI\Container;
 use FigonacciPhpactorial\Controllers\FibFacController;
+use FigonacciPhpactorial\Controllers\TextLenController;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Factory\AppFactory;
@@ -24,4 +25,5 @@ $app->get(
     }
 );
 $app->get('/fibfac', FibFacController::class);
+$app->get('/textlen', TextLenController::class);
 $app->run();
