@@ -20,15 +20,8 @@ down:		## Stop the containers
 	@docker-compose down
 
 .PHONY: benchmark
-benchmark: 	## Execute benchmark <filename>
-	@echo "Starting to generate CSV file..." && \
-	echo "\033[0;90m" && \
-	docker-compose exec client php benchmark.php --epochs 1 --max_value 1 | tee ./benchmarks/$(call args,example).csv && \
-	echo "\033[0;0m" && \
-	echo "CSV file generated in: \033[1;32m ./benchmarks/$(call args,example).csv \033[0;0m" && \
-	echo "Starting processing data..." && \
-	docker-compose run painter python processBenchmark.py $(call args,example) && \
-	echo "PNG file generated in: \033[1;32m ./benchmarks/$(call args,example).png \033[0;0m"
+benchmark: 	## Usage: benchmark <filename> <num-epochs> <max-value>
+	@bash ./benchmarks/run.sh $(call args,)
 
 .PHONY: test
 test: test-php-http test-go-http test-go-grpc		## Execute test
