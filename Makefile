@@ -1,3 +1,9 @@
+args = `arg="$(filter-out $@,$(MAKECMDGOALS))" && echo $${arg:-${1}}`
+
+# Help rule to get the arguments
+%:
+	@:
+
 help:		## Show this help.
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
 .PHONY: run
@@ -15,8 +21,12 @@ down:		## Stop the containers
 
 .PHONY: benchmark
 benchmark: 	## Execute benchmark
-	@docker-compose exec client php benchmark.php --epochs 1 --max_value 1 > ./benchmarks/example.csv && \
-	docker-compose run painter python processBenchmark.py
+	@echo "Starting to generate CSV file..." && \
+	docker-compose exec client php benchmark.php --epochs 1 --max_value 1 | tee ./benchmarks/$(call args,example).csv && \
+	echo "CSV file generated in ./benchmarks/$(call args,example).csv" && \
+	echo "Starting processing data..." && \
+	docker-compose run painter python processBenchmark.py $(call args,example) && \
+	echo "PNG file generated in ./benchmarks/$(call args,example).png"
 
 .PHONY: test
 test: test-php-http test-go-http test-go-grpc		## Execute test

@@ -1,7 +1,15 @@
+import sys
+import os
 import pandas as pd
 import matplotlib.pyplot as plt
 
-data = pd.read_csv('/data/example.csv')
+if len(sys.argv) != 2:
+    print("Usage: " + os.path.basename(__file__) + " <filename>")
+    exit(1)
+
+filename = sys.argv[1]
+
+data = pd.read_csv('/data/' + filename + '.csv')
 
 # FibFac process
 ff = data[data['method'] == 'fibFac']
@@ -15,4 +23,4 @@ for arch, df in ff.groupby('architecture'):
 ax.set_title("Benchmark comparison")
 legend = ax.legend(bbox_to_anchor=(1, 1))
 ax.grid('on')
-plt.savefig('/data/example.png', bbox_extra_artists=(legend,), bbox_inches='tight')
+plt.savefig('/data/' + filename + '.png', bbox_extra_artists=(legend,), bbox_inches='tight')
