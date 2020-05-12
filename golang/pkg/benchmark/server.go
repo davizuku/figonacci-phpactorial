@@ -46,3 +46,14 @@ func (s *Server) TextLen(ctx context.Context, req *TextLenRequest) (*TextLenResp
 	s.logger.Info("Handle Benchmark.TextLen for value: " + strconv.FormatUint(req.A, 10))
 	return &TextLenResponse{Text: calculator.TextLen(req.A)}, nil
 }
+
+// TextLenPhp generate a random text for the given request data
+func (s *Server) TextLenPhp(ctx context.Context, req *TextLenRequest) (*TextLenResponse, error) {
+	a := strconv.FormatUint(req.A, 10)
+	s.logger.Info("Handle Benchmark.TextLenPhp for value: " + a)
+	out, err := exec.Command("php", "/php-code/scripts/textlen.php", a).Output()
+	if err != nil {
+		panic("Error executing the php script")
+	}
+	return &TextLenResponse{Text: string(out)}, nil
+}

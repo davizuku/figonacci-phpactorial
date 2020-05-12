@@ -70,6 +70,22 @@ func main() {
 		}
 		fmt.Fprintf(res, "%s\n", calculator.TextLen(uint64(a)))
 	})
+	router.HandleFunc("/textlen-php", func(res http.ResponseWriter, req *http.Request) {
+		logger.Println("Handling GET on route:", req.RequestURI)
+		paramsA, ok := req.URL.Query()["a"]
+		if !ok || len(paramsA) != 1 {
+			http.Error(res, "Invalid or missing 'a' query param", http.StatusBadRequest)
+		}
+		a, err := strconv.Atoi(paramsA[0])
+		if err != nil {
+			http.Error(res, "Invalid 'a' query param", http.StatusBadRequest)
+		}
+		out, err := exec.Command("php", "/php-code/scripts/textlen.php", strconv.Itoa(a)).Output()
+		if err != nil {
+			http.Error(res, "Error executing the php script", http.StatusInternalServerError)
+		}
+		fmt.Fprintf(res, "%s\n", out)
+	})
 	port := "80"
 	server := &http.Server{
 		Addr:         ":" + port,

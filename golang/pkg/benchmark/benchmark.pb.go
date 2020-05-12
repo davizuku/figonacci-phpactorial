@@ -230,7 +230,7 @@ var file_benchmark_proto_rawDesc = []byte{
 	0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x01, 0x41, 0x22, 0x25, 0x0a, 0x0f, 0x54, 0x65, 0x78, 0x74,
 	0x4c, 0x65, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x54,
 	0x65, 0x78, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x54, 0x65, 0x78, 0x74, 0x32,
-	0x92, 0x01, 0x0a, 0x09, 0x42, 0x65, 0x6e, 0x63, 0x68, 0x6d, 0x61, 0x72, 0x6b, 0x12, 0x29, 0x0a,
+	0xc3, 0x01, 0x0a, 0x09, 0x42, 0x65, 0x6e, 0x63, 0x68, 0x6d, 0x61, 0x72, 0x6b, 0x12, 0x29, 0x0a,
 	0x06, 0x46, 0x69, 0x62, 0x46, 0x61, 0x63, 0x12, 0x0e, 0x2e, 0x46, 0x69, 0x62, 0x46, 0x61, 0x63,
 	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0f, 0x2e, 0x46, 0x69, 0x62, 0x46, 0x61, 0x63,
 	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2c, 0x0a, 0x09, 0x46, 0x69, 0x62, 0x46,
@@ -239,9 +239,12 @@ var file_benchmark_proto_rawDesc = []byte{
 	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2c, 0x0a, 0x07, 0x54, 0x65, 0x78, 0x74, 0x4c, 0x65,
 	0x6e, 0x12, 0x0f, 0x2e, 0x54, 0x65, 0x78, 0x74, 0x4c, 0x65, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65,
 	0x73, 0x74, 0x1a, 0x10, 0x2e, 0x54, 0x65, 0x78, 0x74, 0x4c, 0x65, 0x6e, 0x52, 0x65, 0x73, 0x70,
-	0x6f, 0x6e, 0x73, 0x65, 0x42, 0x1e, 0x5a, 0x0b, 0x2e, 0x3b, 0x62, 0x65, 0x6e, 0x63, 0x68, 0x6d,
-	0x61, 0x72, 0x6b, 0xca, 0x02, 0x0e, 0x47, 0x52, 0x50, 0x43, 0x5c, 0x42, 0x65, 0x6e, 0x63, 0x68,
-	0x6d, 0x61, 0x72, 0x6b, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2f, 0x0a, 0x0a, 0x54, 0x65, 0x78, 0x74, 0x4c, 0x65, 0x6e, 0x50,
+	0x68, 0x70, 0x12, 0x0f, 0x2e, 0x54, 0x65, 0x78, 0x74, 0x4c, 0x65, 0x6e, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x1a, 0x10, 0x2e, 0x54, 0x65, 0x78, 0x74, 0x4c, 0x65, 0x6e, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x1e, 0x5a, 0x0b, 0x2e, 0x3b, 0x62, 0x65, 0x6e, 0x63, 0x68,
+	0x6d, 0x61, 0x72, 0x6b, 0xca, 0x02, 0x0e, 0x47, 0x52, 0x50, 0x43, 0x5c, 0x42, 0x65, 0x6e, 0x63,
+	0x68, 0x6d, 0x61, 0x72, 0x6b, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -267,11 +270,13 @@ var file_benchmark_proto_depIdxs = []int32{
 	0, // 0: Benchmark.FibFac:input_type -> FibFacRequest
 	0, // 1: Benchmark.FibFacPhp:input_type -> FibFacRequest
 	2, // 2: Benchmark.TextLen:input_type -> TextLenRequest
-	1, // 3: Benchmark.FibFac:output_type -> FibFacResponse
-	1, // 4: Benchmark.FibFacPhp:output_type -> FibFacResponse
-	3, // 5: Benchmark.TextLen:output_type -> TextLenResponse
-	3, // [3:6] is the sub-list for method output_type
-	0, // [0:3] is the sub-list for method input_type
+	2, // 3: Benchmark.TextLenPhp:input_type -> TextLenRequest
+	1, // 4: Benchmark.FibFac:output_type -> FibFacResponse
+	1, // 5: Benchmark.FibFacPhp:output_type -> FibFacResponse
+	3, // 6: Benchmark.TextLen:output_type -> TextLenResponse
+	3, // 7: Benchmark.TextLenPhp:output_type -> TextLenResponse
+	4, // [4:8] is the sub-list for method output_type
+	0, // [0:4] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -367,6 +372,7 @@ type BenchmarkClient interface {
 	FibFac(ctx context.Context, in *FibFacRequest, opts ...grpc.CallOption) (*FibFacResponse, error)
 	FibFacPhp(ctx context.Context, in *FibFacRequest, opts ...grpc.CallOption) (*FibFacResponse, error)
 	TextLen(ctx context.Context, in *TextLenRequest, opts ...grpc.CallOption) (*TextLenResponse, error)
+	TextLenPhp(ctx context.Context, in *TextLenRequest, opts ...grpc.CallOption) (*TextLenResponse, error)
 }
 
 type benchmarkClient struct {
@@ -404,11 +410,21 @@ func (c *benchmarkClient) TextLen(ctx context.Context, in *TextLenRequest, opts 
 	return out, nil
 }
 
+func (c *benchmarkClient) TextLenPhp(ctx context.Context, in *TextLenRequest, opts ...grpc.CallOption) (*TextLenResponse, error) {
+	out := new(TextLenResponse)
+	err := c.cc.Invoke(ctx, "/Benchmark/TextLenPhp", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // BenchmarkServer is the server API for Benchmark service.
 type BenchmarkServer interface {
 	FibFac(context.Context, *FibFacRequest) (*FibFacResponse, error)
 	FibFacPhp(context.Context, *FibFacRequest) (*FibFacResponse, error)
 	TextLen(context.Context, *TextLenRequest) (*TextLenResponse, error)
+	TextLenPhp(context.Context, *TextLenRequest) (*TextLenResponse, error)
 }
 
 // UnimplementedBenchmarkServer can be embedded to have forward compatible implementations.
@@ -423,6 +439,9 @@ func (*UnimplementedBenchmarkServer) FibFacPhp(context.Context, *FibFacRequest) 
 }
 func (*UnimplementedBenchmarkServer) TextLen(context.Context, *TextLenRequest) (*TextLenResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TextLen not implemented")
+}
+func (*UnimplementedBenchmarkServer) TextLenPhp(context.Context, *TextLenRequest) (*TextLenResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TextLenPhp not implemented")
 }
 
 func RegisterBenchmarkServer(s *grpc.Server, srv BenchmarkServer) {
@@ -483,6 +502,24 @@ func _Benchmark_TextLen_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Benchmark_TextLenPhp_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TextLenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BenchmarkServer).TextLenPhp(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/Benchmark/TextLenPhp",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BenchmarkServer).TextLenPhp(ctx, req.(*TextLenRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Benchmark_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "Benchmark",
 	HandlerType: (*BenchmarkServer)(nil),
@@ -498,6 +535,10 @@ var _Benchmark_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "TextLen",
 			Handler:    _Benchmark_TextLen_Handler,
+		},
+		{
+			MethodName: "TextLenPhp",
+			Handler:    _Benchmark_TextLenPhp_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
