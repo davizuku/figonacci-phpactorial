@@ -6,6 +6,7 @@ option go_package=".;benchmark";
 service Benchmark {
     rpc FibFac(FibFacRequest) returns (FibFacResponse);
     rpc FibFacPhp(FibFacRequest) returns (FibFacResponse);
+    rpc TextLen(TextLenRequest) returns (TextLenResponse);
 }
 
 message FibFacRequest {
@@ -14,4 +15,12 @@ message FibFacRequest {
 
 message FibFacResponse {
     uint64 Value = 1;
+}
+
+message TextLenRequest {
+    uint64 A = 1;
+}
+
+message TextLenResponse {
+    string Text = 1;
 }

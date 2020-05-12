@@ -40,3 +40,9 @@ func (s *Server) FibFacPhp(ctx context.Context, req *FibFacRequest) (*FibFacResp
 	}
 	return &FibFacResponse{Value: uint64(intOut)}, nil
 }
+
+// TextLen generate a random text for the given request data
+func (s *Server) TextLen(ctx context.Context, req *TextLenRequest) (*TextLenResponse, error) {
+	s.logger.Info("Handle Benchmark.TextLen for value: " + strconv.FormatUint(req.A, 10))
+	return &TextLenResponse{Text: calculator.TextLen(req.A)}, nil
+}

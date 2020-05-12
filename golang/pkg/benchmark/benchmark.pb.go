@@ -123,6 +123,100 @@ func (x *FibFacResponse) GetValue() uint64 {
 	return 0
 }
 
+type TextLenRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	A uint64 `protobuf:"varint,1,opt,name=A,proto3" json:"A,omitempty"`
+}
+
+func (x *TextLenRequest) Reset() {
+	*x = TextLenRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_benchmark_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *TextLenRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TextLenRequest) ProtoMessage() {}
+
+func (x *TextLenRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_benchmark_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TextLenRequest.ProtoReflect.Descriptor instead.
+func (*TextLenRequest) Descriptor() ([]byte, []int) {
+	return file_benchmark_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *TextLenRequest) GetA() uint64 {
+	if x != nil {
+		return x.A
+	}
+	return 0
+}
+
+type TextLenResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Text string `protobuf:"bytes,1,opt,name=Text,proto3" json:"Text,omitempty"`
+}
+
+func (x *TextLenResponse) Reset() {
+	*x = TextLenResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_benchmark_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *TextLenResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TextLenResponse) ProtoMessage() {}
+
+func (x *TextLenResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_benchmark_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TextLenResponse.ProtoReflect.Descriptor instead.
+func (*TextLenResponse) Descriptor() ([]byte, []int) {
+	return file_benchmark_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *TextLenResponse) GetText() string {
+	if x != nil {
+		return x.Text
+	}
+	return ""
+}
+
 var File_benchmark_proto protoreflect.FileDescriptor
 
 var file_benchmark_proto_rawDesc = []byte{
@@ -131,16 +225,23 @@ var file_benchmark_proto_rawDesc = []byte{
 	0x73, 0x74, 0x12, 0x0c, 0x0a, 0x01, 0x41, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x01, 0x41,
 	0x22, 0x26, 0x0a, 0x0e, 0x46, 0x69, 0x62, 0x46, 0x61, 0x63, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
 	0x73, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28,
-	0x04, 0x52, 0x05, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x32, 0x64, 0x0a, 0x09, 0x42, 0x65, 0x6e, 0x63,
-	0x68, 0x6d, 0x61, 0x72, 0x6b, 0x12, 0x29, 0x0a, 0x06, 0x46, 0x69, 0x62, 0x46, 0x61, 0x63, 0x12,
-	0x0e, 0x2e, 0x46, 0x69, 0x62, 0x46, 0x61, 0x63, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
-	0x0f, 0x2e, 0x46, 0x69, 0x62, 0x46, 0x61, 0x63, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
-	0x12, 0x2c, 0x0a, 0x09, 0x46, 0x69, 0x62, 0x46, 0x61, 0x63, 0x50, 0x68, 0x70, 0x12, 0x0e, 0x2e,
-	0x46, 0x69, 0x62, 0x46, 0x61, 0x63, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0f, 0x2e,
-	0x46, 0x69, 0x62, 0x46, 0x61, 0x63, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x1e,
-	0x5a, 0x0b, 0x2e, 0x3b, 0x62, 0x65, 0x6e, 0x63, 0x68, 0x6d, 0x61, 0x72, 0x6b, 0xca, 0x02, 0x0e,
-	0x47, 0x52, 0x50, 0x43, 0x5c, 0x42, 0x65, 0x6e, 0x63, 0x68, 0x6d, 0x61, 0x72, 0x6b, 0x62, 0x06,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x04, 0x52, 0x05, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x22, 0x1e, 0x0a, 0x0e, 0x54, 0x65, 0x78, 0x74,
+	0x4c, 0x65, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0c, 0x0a, 0x01, 0x41, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x01, 0x41, 0x22, 0x25, 0x0a, 0x0f, 0x54, 0x65, 0x78, 0x74,
+	0x4c, 0x65, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x54,
+	0x65, 0x78, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x54, 0x65, 0x78, 0x74, 0x32,
+	0x92, 0x01, 0x0a, 0x09, 0x42, 0x65, 0x6e, 0x63, 0x68, 0x6d, 0x61, 0x72, 0x6b, 0x12, 0x29, 0x0a,
+	0x06, 0x46, 0x69, 0x62, 0x46, 0x61, 0x63, 0x12, 0x0e, 0x2e, 0x46, 0x69, 0x62, 0x46, 0x61, 0x63,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0f, 0x2e, 0x46, 0x69, 0x62, 0x46, 0x61, 0x63,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2c, 0x0a, 0x09, 0x46, 0x69, 0x62, 0x46,
+	0x61, 0x63, 0x50, 0x68, 0x70, 0x12, 0x0e, 0x2e, 0x46, 0x69, 0x62, 0x46, 0x61, 0x63, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0f, 0x2e, 0x46, 0x69, 0x62, 0x46, 0x61, 0x63, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2c, 0x0a, 0x07, 0x54, 0x65, 0x78, 0x74, 0x4c, 0x65,
+	0x6e, 0x12, 0x0f, 0x2e, 0x54, 0x65, 0x78, 0x74, 0x4c, 0x65, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x1a, 0x10, 0x2e, 0x54, 0x65, 0x78, 0x74, 0x4c, 0x65, 0x6e, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x42, 0x1e, 0x5a, 0x0b, 0x2e, 0x3b, 0x62, 0x65, 0x6e, 0x63, 0x68, 0x6d,
+	0x61, 0x72, 0x6b, 0xca, 0x02, 0x0e, 0x47, 0x52, 0x50, 0x43, 0x5c, 0x42, 0x65, 0x6e, 0x63, 0x68,
+	0x6d, 0x61, 0x72, 0x6b, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -155,18 +256,22 @@ func file_benchmark_proto_rawDescGZIP() []byte {
 	return file_benchmark_proto_rawDescData
 }
 
-var file_benchmark_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_benchmark_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_benchmark_proto_goTypes = []interface{}{
-	(*FibFacRequest)(nil),  // 0: FibFacRequest
-	(*FibFacResponse)(nil), // 1: FibFacResponse
+	(*FibFacRequest)(nil),   // 0: FibFacRequest
+	(*FibFacResponse)(nil),  // 1: FibFacResponse
+	(*TextLenRequest)(nil),  // 2: TextLenRequest
+	(*TextLenResponse)(nil), // 3: TextLenResponse
 }
 var file_benchmark_proto_depIdxs = []int32{
 	0, // 0: Benchmark.FibFac:input_type -> FibFacRequest
 	0, // 1: Benchmark.FibFacPhp:input_type -> FibFacRequest
-	1, // 2: Benchmark.FibFac:output_type -> FibFacResponse
-	1, // 3: Benchmark.FibFacPhp:output_type -> FibFacResponse
-	2, // [2:4] is the sub-list for method output_type
-	0, // [0:2] is the sub-list for method input_type
+	2, // 2: Benchmark.TextLen:input_type -> TextLenRequest
+	1, // 3: Benchmark.FibFac:output_type -> FibFacResponse
+	1, // 4: Benchmark.FibFacPhp:output_type -> FibFacResponse
+	3, // 5: Benchmark.TextLen:output_type -> TextLenResponse
+	3, // [3:6] is the sub-list for method output_type
+	0, // [0:3] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -202,6 +307,30 @@ func file_benchmark_proto_init() {
 				return nil
 			}
 		}
+		file_benchmark_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*TextLenRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_benchmark_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*TextLenResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -209,7 +338,7 @@ func file_benchmark_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_benchmark_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -237,6 +366,7 @@ const _ = grpc.SupportPackageIsVersion6
 type BenchmarkClient interface {
 	FibFac(ctx context.Context, in *FibFacRequest, opts ...grpc.CallOption) (*FibFacResponse, error)
 	FibFacPhp(ctx context.Context, in *FibFacRequest, opts ...grpc.CallOption) (*FibFacResponse, error)
+	TextLen(ctx context.Context, in *TextLenRequest, opts ...grpc.CallOption) (*TextLenResponse, error)
 }
 
 type benchmarkClient struct {
@@ -265,10 +395,20 @@ func (c *benchmarkClient) FibFacPhp(ctx context.Context, in *FibFacRequest, opts
 	return out, nil
 }
 
+func (c *benchmarkClient) TextLen(ctx context.Context, in *TextLenRequest, opts ...grpc.CallOption) (*TextLenResponse, error) {
+	out := new(TextLenResponse)
+	err := c.cc.Invoke(ctx, "/Benchmark/TextLen", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // BenchmarkServer is the server API for Benchmark service.
 type BenchmarkServer interface {
 	FibFac(context.Context, *FibFacRequest) (*FibFacResponse, error)
 	FibFacPhp(context.Context, *FibFacRequest) (*FibFacResponse, error)
+	TextLen(context.Context, *TextLenRequest) (*TextLenResponse, error)
 }
 
 // UnimplementedBenchmarkServer can be embedded to have forward compatible implementations.
@@ -280,6 +420,9 @@ func (*UnimplementedBenchmarkServer) FibFac(context.Context, *FibFacRequest) (*F
 }
 func (*UnimplementedBenchmarkServer) FibFacPhp(context.Context, *FibFacRequest) (*FibFacResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FibFacPhp not implemented")
+}
+func (*UnimplementedBenchmarkServer) TextLen(context.Context, *TextLenRequest) (*TextLenResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TextLen not implemented")
 }
 
 func RegisterBenchmarkServer(s *grpc.Server, srv BenchmarkServer) {
@@ -322,6 +465,24 @@ func _Benchmark_FibFacPhp_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Benchmark_TextLen_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TextLenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BenchmarkServer).TextLen(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/Benchmark/TextLen",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BenchmarkServer).TextLen(ctx, req.(*TextLenRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Benchmark_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "Benchmark",
 	HandlerType: (*BenchmarkServer)(nil),
@@ -333,6 +494,10 @@ var _Benchmark_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "FibFacPhp",
 			Handler:    _Benchmark_FibFacPhp_Handler,
+		},
+		{
+			MethodName: "TextLen",
+			Handler:    _Benchmark_TextLen_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

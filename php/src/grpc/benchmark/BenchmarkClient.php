@@ -42,4 +42,17 @@ class BenchmarkClient extends \Grpc\BaseStub {
         $metadata, $options);
     }
 
+    /**
+     * @param \GRPC\Benchmark\TextLenRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function TextLen(\GRPC\Benchmark\TextLenRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/Benchmark/TextLen',
+        $argument,
+        ['\GRPC\Benchmark\TextLenResponse', 'decode'],
+        $metadata, $options);
+    }
+
 }
