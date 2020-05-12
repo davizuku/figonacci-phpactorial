@@ -11,26 +11,29 @@ func pickChar() string {
 	return string(vocab[index])
 }
 
-// TextLen generates a random text of length n
-func TextLen(n uint64) string {
+// textLenIt generates a random text of length n iteratively
+func textLenIt(n uint64) string {
 	text := ""
 	for i := 0; i < int(n); i++ {
 		text += pickChar()
 	}
 	return text
-	// results := make(chan uint64, 3)
-	// go func() {
-	// 	results <- Fibonacci(x-1, mod)
-	// }()
-	// go func() {
-	// 	results <- Fibonacci(x-2, mod)
-	// }()
-	// go func() {
-	// 	results <- Factorial(x, mod)
-	// }()
-	// fibFac := <-results
-	// fibFac = (fibFac + <-results) % mod
-	// fibFac = (fibFac + <-results) % mod
-	// close(results)
-	// return fibFac
+}
+
+// TextLen generates a random text of length n
+func TextLen(n uint64) string {
+	text := ""
+	if n%2 == 1 {
+		text += pickChar()
+	}
+	subTexts := make(chan string, 2)
+	go func() {
+		subTexts <- textLenIt(n / 2)
+	}()
+	go func() {
+		subTexts <- textLenIt(n / 2)
+	}()
+	text += <-subTexts
+	text += <-subTexts
+	return text
 }
