@@ -58,6 +58,18 @@ func main() {
 		}
 		fmt.Fprintf(res, "%s\n", out)
 	})
+	router.HandleFunc("/textlen", func(res http.ResponseWriter, req *http.Request) {
+		logger.Println("Handling GET on route:", req.RequestURI)
+		paramsA, ok := req.URL.Query()["a"]
+		if !ok || len(paramsA) != 1 {
+			http.Error(res, "Invalid or missing 'a' query param", http.StatusBadRequest)
+		}
+		a, err := strconv.Atoi(paramsA[0])
+		if err != nil {
+			http.Error(res, "Invalid 'a' query param", http.StatusBadRequest)
+		}
+		fmt.Fprintf(res, "%s\n", calculator.TextLen(uint64(a)))
+	})
 	port := "80"
 	server := &http.Server{
 		Addr:         ":" + port,
