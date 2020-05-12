@@ -10,7 +10,7 @@ use GRPC\Hello\PBEmpty;
 
 class GrpcClient implements ClientInterface
 {
-    static protected $method = 'fibFac';
+    static protected $fibFacMethod = 'fibFac';
 
     /** @var HelloWorldClient */
     protected $helloClient;
@@ -44,7 +44,7 @@ class GrpcClient implements ClientInterface
         $request = new FibFacRequest();
         $request->setA($x);
         /** @var \GRPC\Benchmark\FibFacResponse $response */
-        $grpcCall = call_user_func([$this->benchmarkClient, static::$method], $request);
+        $grpcCall = call_user_func([$this->benchmarkClient, static::$fibFacMethod], $request);
         /** @var \GRPC\Benchmark\FibFacResponse $response */
         list($response, $status) = $grpcCall->wait();
         if ($status->code !== 0) {
