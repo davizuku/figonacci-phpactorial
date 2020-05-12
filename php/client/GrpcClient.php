@@ -16,14 +16,14 @@ class GrpcClient implements ClientInterface
     protected $helloClient;
 
     /** @var BenchmarkClient */
-    protected $fibFacClient;
+    protected $benchmarkClient;
 
     public function __construct(string $url)
     {
         $this->helloClient = new HelloWorldClient($url, [
             'credentials' => \Grpc\ChannelCredentials::createInsecure(),
         ]);
-        $this->fibFacClient = new BenchmarkClient($url, [
+        $this->benchmarkClient = new BenchmarkClient($url, [
             'credentials' => \Grpc\ChannelCredentials::createInsecure(),
         ]);
     }
@@ -44,7 +44,7 @@ class GrpcClient implements ClientInterface
         $request = new FibFacRequest();
         $request->setA($x);
         /** @var \GRPC\Benchmark\FibFacResponse $response */
-        $grpcCall = call_user_func([$this->fibFacClient, static::$method], $request);
+        $grpcCall = call_user_func([$this->benchmarkClient, static::$method], $request);
         /** @var \GRPC\Benchmark\FibFacResponse $response */
         list($response, $status) = $grpcCall->wait();
         if ($status->code !== 0) {
