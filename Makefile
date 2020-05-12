@@ -20,7 +20,7 @@ down:		## Stop the containers
 	@docker-compose down
 
 .PHONY: benchmark
-benchmark: 	## Usage: benchmark <filename> <num-epochs> <max-value>
+benchmark: 	## Usage: benchmark <filename> <num-epochs> <max-value> <method>
 	@bash ./benchmarks/run.sh $(call args,)
 
 .PHONY: test

@@ -9,9 +9,10 @@ use FigonacciPhpactorial\Client\LocalClient;
 
 include __DIR__ . '/vendor/autoload.php';
 
-$options = getopt('', ['epochs:', 'max_value:']);
+$options = getopt('', ['method:', 'epochs:', 'max_value:']);
 $epochs = $options['epochs'] ?? 1;
 $maxValue = $options['max_value'] ?? 1;
+$method = $options['method'] ?? 'fibFac';
 
 $clients = [
     'localPhp' => new LocalClient(getenv('FIBFAC_MOD')),
@@ -34,9 +35,9 @@ foreach (range(1, $epochs) as $iter) {
     foreach ($values as $v) {
         foreach ($architectures as $arch) {
             $t0 = microtime(true);
-            $fibFac = $clients[$arch]->fibFac($v);
+            $fibFac = call_user_func([$clients[$arch], $method], $v);
             $t1 = microtime(true);
-            echo implode(',', [$arch, 'fibFac', $v, $fibFac, $t1 - $t0]) . "\n";
+            echo implode(',', [$arch, $method, $v, $fibFac, $t1 - $t0]) . "\n";
         }
     }
 }

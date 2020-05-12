@@ -3,16 +3,18 @@ import os
 import pandas as pd
 import matplotlib.pyplot as plt
 
-if len(sys.argv) != 2:
-    print("Usage: " + os.path.basename(__file__) + " <filename>")
+if len(sys.argv) < 2:
+    print("Usage: " + os.path.basename(__file__) + " <filename> <method>")
+    print("Given: " + " ".join(sys.argv))
     exit(1)
 
 filename = sys.argv[1]
+method = sys.argv[2] if len(sys.argv) == 3 else 'fibFac'
 
 data = pd.read_csv('/data/' + filename + '.csv')
 
 # FibFac process
-ff = data[data['method'] == 'fibFac']
+ff = data[data['method'] == method]
 ff.drop(columns=['method', 'value'], inplace=True)
 ff = ff.groupby(['architecture', 'param']).mean()
 ff = ff.reset_index()
