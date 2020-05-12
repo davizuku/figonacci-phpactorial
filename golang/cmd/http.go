@@ -68,7 +68,7 @@ func main() {
 		if err != nil {
 			http.Error(res, "Invalid 'a' query param", http.StatusBadRequest)
 		}
-		fmt.Fprintf(res, "%s\n", calculator.TextLen(uint64(a)))
+		fmt.Fprintf(res, "%s", calculator.TextLen(uint64(a)))
 	})
 	router.HandleFunc("/textlen-php", func(res http.ResponseWriter, req *http.Request) {
 		logger.Println("Handling GET on route:", req.RequestURI)
@@ -84,7 +84,7 @@ func main() {
 		if err != nil {
 			http.Error(res, "Error executing the php script", http.StatusInternalServerError)
 		}
-		fmt.Fprintf(res, "%s\n", out)
+		fmt.Fprintf(res, "%s", out)
 	})
 	port := "80"
 	server := &http.Server{

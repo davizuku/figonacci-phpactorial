@@ -14,7 +14,7 @@ class TextLenController
         if (!is_null($a)) {
             $textGen = new TextGenerator();
             $text = $textGen($a);
-            $response->getBody()->write("$text\n");
+            $response->getBody()->write("$text");
         } else {
             $response->withStatus(400);
         }
