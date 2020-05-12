@@ -4,6 +4,7 @@ namespace FigonacciPhpactorial\Client;
 
 use FigonacciPhpactorial\Calculators\Factorial;
 use FigonacciPhpactorial\Calculators\Fibonacci;
+use FigonacciPhpactorial\Calculators\TextGenerator;
 
 class LocalClient implements ClientInterface
 {
@@ -25,5 +26,11 @@ class LocalClient implements ClientInterface
         $fib = new Fibonacci();
         $fac = new Factorial();
         return $fib($x, $this->mod) + $fac($x, $this->mod);
+    }
+
+    public function textLen(int $x): string
+    {
+        $textGen = new TextGenerator();
+        return $textGen($x);
     }
 }
