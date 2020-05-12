@@ -5,12 +5,14 @@ namespace FigonacciPhpactorial\Client;
 use Exception;
 use GRPC\Benchmark\BenchmarkClient;
 use GRPC\Benchmark\FibFacRequest;
+use GRPC\Benchmark\TextLenRequest;
 use GRPC\Hello\HelloWorldClient as HelloWorldClient;
 use GRPC\Hello\PBEmpty;
 
 class GrpcClient implements ClientInterface
 {
     static protected $fibFacMethod = 'fibFac';
+    static protected $textLenMethod = 'textLen';
 
     /** @var HelloWorldClient */
     protected $helloClient;
@@ -51,5 +53,19 @@ class GrpcClient implements ClientInterface
             throw new Exception($status->details, $status->code);
         }
         return $response->getValue();
+    }
+
+    public function textLen(int $x): string
+    {
+        $request = new TextLenRequest();
+        $request->setA($x);
+        /** @var \GRPC\Benchmark\TextLenResponse $response */
+        $grpcCall = call_user_func([$this->benchmarkClient, static::$textLenMethod], $request);
+        /** @var \GRPC\Benchmark\TextLenResponse $response */
+        list($response, $status) = $grpcCall->wait();
+        if ($status->code !== 0) {
+            throw new Exception($status->details, $status->code);
+        }
+        return $response->getText();
     }
 }
