@@ -21,7 +21,7 @@ def processMethod(method):
     fig, ax = plt.subplots()
     for arch, df in ff.groupby('architecture'):
         ax.plot(df.param, df.time, marker='o', linestyle='dotted', lw=2, ms=3, label=arch)
-    ax.set_title("Benchmark comparison")
+    ax.set_title("Benchmark " + method + " comparison")
     legend = ax.legend(bbox_to_anchor=(1, 1))
     ax.grid('on')
     plt.savefig(
