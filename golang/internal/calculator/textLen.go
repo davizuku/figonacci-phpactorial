@@ -1,30 +1,31 @@
 package calculator
 
 import (
+	"bytes"
 	"math/rand"
 )
 
 const vocab = "abcdefghijklmnopqrstuvwxyz09123456789 "
 
-func pickChar() string {
+func pickChar() byte {
 	index := rand.Intn(len(vocab))
-	return string(vocab[index])
+	return vocab[index]
 }
 
 // textLenIt generates a random text of length n iteratively
 func textLenIt(n uint64) string {
-	text := ""
+	var b bytes.Buffer
 	for i := 0; i < int(n); i++ {
-		text += pickChar()
+		b.WriteByte(pickChar())
 	}
-	return text
+	return b.String()
 }
 
 // TextLen generates a random text of length n
 func TextLen(n uint64) string {
-	text := ""
+	var text bytes.Buffer
 	if n%2 == 1 {
-		text += pickChar()
+		text.WriteByte(pickChar())
 	}
 	subTexts := make(chan string, 2)
 	go func() {
@@ -33,7 +34,7 @@ func TextLen(n uint64) string {
 	go func() {
 		subTexts <- textLenIt(n / 2)
 	}()
-	text += <-subTexts
-	text += <-subTexts
-	return text
+	text.WriteString(<-subTexts)
+	text.WriteString(<-subTexts)
+	return text.String()
 }
