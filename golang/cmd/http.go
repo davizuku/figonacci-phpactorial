@@ -92,7 +92,7 @@ func main() {
 		Handler:      router,
 		IdleTimeout:  120 * time.Second,
 		ReadTimeout:  1 * time.Second,
-		WriteTimeout: 1 * time.Second,
+		WriteTimeout: 30 * time.Second,
 	}
 	go func() {
 		logger.Println("HTTP Server listening on port", port)
