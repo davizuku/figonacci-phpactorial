@@ -40,7 +40,7 @@ foreach (range(1, $epochs) as $iter) {
             $t0 = microtime(true);
             $text = $clients[$arch]->textLen(pow(10, $v));
             $t1 = microtime(true);
-            echo implode(',', [$arch, 'textLen', $v, strlen($text), $t1 - $t0]) . "\n";
+            echo implode(',', [$arch, 'textLen', "10^$v", strlen($text), $t1 - $t0]) . "\n";
         }
     }
 }
