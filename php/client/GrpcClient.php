@@ -27,6 +27,7 @@ class GrpcClient implements ClientInterface
         ]);
         $this->benchmarkClient = new BenchmarkClient($url, [
             'credentials' => \Grpc\ChannelCredentials::createInsecure(),
+            // https://chromium.googlesource.com/external/github.com/grpc/grpc/+/HEAD/src/php
             'grpc.max_receive_message_length' => 1024 * 1024 * 1024,
         ]);
     }
