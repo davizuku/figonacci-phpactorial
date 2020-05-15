@@ -159,5 +159,5 @@ Moreover, GO easy parallelization capability makes its services more scalable as
 
 ## Disclaimers
 
-- `FibFac` implementation in GO include an optimization using go routines. This is an optimization taking profit of one of the limitations of PHP services, which is parallelism, as stated [here](https://github.com/krakjoe/pthreads#sapi-support)
+- `FibFac` and `TextLen` implementations in GO include an optimization using go routines. This is an optimization taking profit of one of the limitations of PHP services, which is parallelism, as stated [here](https://github.com/krakjoe/pthreads#sapi-support)
 - Memoization or other algorithmic optimizations have not been applied to the `FibFac` implementation to increase the CPU demand and simulate higher load to the services.
