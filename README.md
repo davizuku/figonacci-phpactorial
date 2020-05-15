@@ -11,7 +11,13 @@ In this repository some solutions to this common architectural scenario are expl
 
 ## Methology
 
-The scenarios presented in this repository asume the desire to replace a module of an application with a clearly defined interface and a logic independent of other modules. As an example of this, is the function `FibFac(x) = Fibonacci(x) + Factorial(x)`. This problem has been chosen and implemented vaguely on purpose to represent a CPU intensive logic.
+The scenarios presented in this repository asume the desire to replace a module of an application with a clearly defined interface and a logic independent of other modules. For generalization purposes two different problems have been chosen: FibFac and TextLen.
+
+The first problem, FibFac, is a _CPU intensive_ algorithm that has been implemented naively for this purpose. As its name may imply, this function is described as follows:
+
+$FibFac(x) = Fibonacci(x) + Factorial(x)$
+
+The second problem, TextLen, is a _memory intensive_ algorithm designed to quickly generate a big response for a given number. In this case, $TextLen(x)$ generate a random string of length $x$.
 
 The following scenarios are considered:
 
@@ -94,35 +100,56 @@ For example, after executing `make benchmark readme-example 1 3`, you should see
 Starting to generate CSV file...
 
 architecture,method,param,value,time
-localPhp,fibFac,2,4,0.012269020080566
-httpGo,fibFac,2,4,0.13835000991821
-httpPhp,fibFac,2,4,0.89593195915222
-httpGoPhp,fibFac,2,4,0.30547308921814
-grpcGoPhp,fibFac,2,4,0.31886720657349
-grpcGo,fibFac,2,4,0.00341796875
-localPhp,fibFac,1,2,2.8848648071289E-5
-httpGo,fibFac,1,2,0.0021929740905762
-httpPhp,fibFac,1,2,1.0135419368744
-httpGoPhp,fibFac,1,2,0.24810910224915
-grpcGoPhp,fibFac,1,2,0.23761796951294
-grpcGo,fibFac,1,2,0.0012149810791016
-localPhp,fibFac,3,9,1.8119812011719E-5
-httpGo,fibFac,3,9,0.0031158924102783
-httpPhp,fibFac,3,9,0.77564311027527
-httpGoPhp,fibFac,3,9,0.23479413986206
-grpcGoPhp,fibFac,3,9,0.25522589683533
-grpcGo,fibFac,3,9,0.0011210441589355
+httpPhp,fibFac,3,9,0.94866299629211
+httpPhp,textLen,10^3,1000,0.69463205337524
+httpGo,fibFac,3,9,0.022700071334839
+httpGo,textLen,10^3,1000,0.0052220821380615
+httpGoPhp,fibFac,3,9,0.2314510345459
+httpGoPhp,textLen,10^3,1000,0.18640899658203
+localPhp,fibFac,3,9,0.026846170425415
+localPhp,textLen,10^3,1000,0.018160820007324
+grpcGo,fibFac,3,9,0.07497501373291
+grpcGo,textLen,10^3,1000,0.020685911178589
+grpcGoPhp,fibFac,3,9,0.25618886947632
+grpcGoPhp,textLen,10^3,1000,0.24194407463074
+httpPhp,fibFac,1,2,0.83478808403015
+httpPhp,textLen,10^1,10,0.69294595718384
+httpGo,fibFac,1,2,0.0020709037780762
+httpGo,textLen,10^1,10,0.0014779567718506
+httpGoPhp,fibFac,1,2,0.21976208686829
+httpGoPhp,textLen,10^1,10,0.23144197463989
+localPhp,fibFac,1,2,1.5974044799805E-5
+localPhp,textLen,10^1,10,2.8133392333984E-5
+grpcGo,fibFac,1,2,0.0011518001556396
+grpcGo,textLen,10^1,10,0.012670993804932
+grpcGoPhp,fibFac,1,2,0.14927291870117
+grpcGoPhp,textLen,10^1,10,0.20850610733032
+httpPhp,fibFac,2,4,0.35487985610962
+httpPhp,textLen,10^2,100,0.34541583061218
+httpGo,fibFac,2,4,0.0022380352020264
+httpGo,textLen,10^2,100,0.0027408599853516
+httpGoPhp,fibFac,2,4,0.23408722877502
+httpGoPhp,textLen,10^2,100,0.22459983825684
+localPhp,fibFac,2,4,1.6927719116211E-5
+localPhp,textLen,10^2,100,0.00040078163146973
+grpcGo,fibFac,2,4,0.0035159587860107
+grpcGo,textLen,10^2,100,0.014184951782227
+grpcGoPhp,fibFac,2,4,0.183758020401
+grpcGoPhp,textLen,10^2,100,0.2317910194397
 
 CSV file generated in:  ./benchmarks/readme-example.csv
 Starting processing data...
-PNG file generated in:  ./benchmarks/readme-example.png
+PNG files generated in:
+     - ./benchmarks/fibFac-readme-example.png
+     - ./benchmarks/textLen-readme-example.png
 ```
 
 ## Results
 
-The following data has been produced by the command `make benchmark example 10 30`. All the data is available under the `benchmarks` folder.
+The following data has been produced by the command `make benchmark example 10 30` for `FibFac` and `make benchmark 10 7` for `TextLen`. All the data is available under the `benchmarks` folder.
 
-![results](https://github.com/davizuku/figonacci-phpactorial/raw/master/benchmarks/example.png)
+![results](https://github.com/davizuku/figonacci-phpactorial/raw/master/benchmarks/example-fibfac.png)
+![results](https://github.com/davizuku/figonacci-phpactorial/raw/master/benchmarks/example-textlen.png)
 
 As you can see, only pure GO services overpass `localPhp` implementation. However, the benefit of simply replacing the Request&Response management from PHP to GO represents 300% benefit in response time.
 
