@@ -9,7 +9,7 @@ Imagine a big PHP application that started as a big monolith. After some refacto
 
 In this repository some solutions to this common architectural scenario are explored.
 
-## Methology
+## Methodology
 
 The scenarios presented in this repository asume the desire to replace a module of an application with a clearly defined interface and a logic independent of other modules. For generalization purposes two different problems have been chosen: FibFac and TextLen.
 
