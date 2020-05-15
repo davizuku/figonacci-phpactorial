@@ -15,9 +15,11 @@ The scenarios presented in this repository asume the desire to replace a module 
 
 The first problem, FibFac, is a _CPU intensive_ algorithm that has been implemented naively for this purpose. As its name may imply, this function is described as follows:
 
-$FibFac(x) = Fibonacci(x) + Factorial(x)$
+```
+FibFac(x) = Fibonacci(x) + Factorial(x)
+```
 
-The second problem, TextLen, is a _memory intensive_ algorithm designed to quickly generate a big response for a given number. In this case, $TextLen(x)$ generate a random string of length $x$.
+The second problem, TextLen, is a _memory intensive_ algorithm designed to quickly generate a big response for a given number. In this case, `TextLen(x)` generate a random string of length `x`.
 
 The following scenarios are considered:
 
