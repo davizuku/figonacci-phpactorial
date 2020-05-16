@@ -37,6 +37,9 @@ app.get('/textlen-php', function (req, res) {
     console.log("Hande GET on route: " + req.path)
     exec.exec(
         "php /php-code/scripts/textlen.php " + req.query.a,
+        {
+            "maxBuffer": 1024 * 1024 * 1024
+        },
         function (error, out) {
             if (error) {
                 res.status(500)
