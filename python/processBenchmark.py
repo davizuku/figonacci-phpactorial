@@ -19,11 +19,11 @@ def processMethod(method):
     ff = ff.reset_index()
 
     fig, ax = plt.subplots()
-    markers = "++xxX."
+    markers = "++xxDDo."
     i = 0
     for arch, df in ff.groupby('architecture'):
         ax.plot(df.param, df.time, marker=markers[i],
-                linestyle='dotted', lw=1, ms=8, label=arch)
+                linestyle='dotted', lw=1, ms=6, label=arch)
         i += 1
     ax.set_title("Benchmark " + method + " comparison")
     legend = ax.legend(bbox_to_anchor=(1, 1))

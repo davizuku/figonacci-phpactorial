@@ -20,6 +20,8 @@ $clients = [
     'httpGoPhp' => new HttpPhpClient('http://go-http'),
     'grpcGo' => new GrpcClient('go-grpc:80'),
     'grpcGoPhp' => new GrpcPhpClient('go-grpc:80'),
+    'httpNode' => new HttpClient('http://node-http'),
+    'httpNodePhp' => new HttpPhpClient('http://node-http'),
 ];
 
 $headers = ['architecture', 'method', 'param', 'value', 'time'];
