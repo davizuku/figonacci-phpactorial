@@ -26,6 +26,8 @@ def processMethod(method):
                 linestyle='dotted', lw=1, ms=6, label=arch)
         i += 1
     ax.set_title("Benchmark " + method + " comparison")
+    plt.ylabel("Execution time (s)")
+    plt.xlabel("Problem size")
     legend = ax.legend(bbox_to_anchor=(1, 1))
     ax.grid('on')
     plt.savefig(
