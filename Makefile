@@ -24,7 +24,7 @@ benchmark: 	## Usage: benchmark <filename> <num-epochs> <max-value>
 	@bash ./benchmarks/run.sh $(call args,)
 
 .PHONY: test
-test: test-php-http test-go-http test-go-grpc		## Execute test
+test: test-php-http test-go-http test-go-grpc test-node-http		## Execute test
 
 test-php-http:
 	@echo "Sending request to php-http service..." && time curl localhost:3000
@@ -35,6 +35,9 @@ test-go-http:
 test-go-grpc:
 	@echo "Sending request to go-grpc service..." && \
 	time grpcurl --plaintext localhost:3002 HelloWorld.Speak
+
+test-node-http:
+	@echo "Sending request to node-http service..." && time curl localhost:3003
 
 .PHONY: clean
 clean:		## Clean all the data created
