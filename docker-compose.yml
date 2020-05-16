@@ -59,6 +59,20 @@ services:
     networks:
       - benchmark
     restart: always
+  node-http:
+    env_file:
+      - ./docker/common.env
+    build:
+      context: ./docker/node
+    working_dir: /node-http
+    volumes:
+      - ./node:/node-http
+      - ./php:/php-code
+    ports:
+      - "3003:80"
+    networks:
+      - benchmark
+    restart: always
   painter:
     build:
       context: ./docker/python
