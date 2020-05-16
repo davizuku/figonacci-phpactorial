@@ -14,7 +14,10 @@ class HttpClient implements ClientInterface
 
     public function __construct(string $url)
     {
-        $this->guzzle = new GuzzleClient(['base_uri' => $url]);
+        $this->guzzle = new GuzzleClient([
+            'base_uri' => $url,
+            'timeout' => 300,
+        ]);
     }
 
     public function helloWorld(): string
