@@ -18,7 +18,6 @@ app.get('/textlen', function (req, res) {
     res.send(textLen(req.query.a));
 });
 
-
 app.listen(80, function () {
     console.log('node-http Server listening on port 80');
 });
