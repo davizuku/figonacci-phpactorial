@@ -14,7 +14,8 @@ build:		## Build the containers
 	@docker-compose build
 .PHONY: install
 install:	## Install the dependencies
-	@docker-compose run --rm php-http composer install
+	@docker-compose run --rm php-http composer install && \
+	docker-compose run --entrypoint "" node-http npm install
 .PHONY: down
 down:		## Stop the containers
 	@docker-compose down
