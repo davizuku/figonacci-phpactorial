@@ -14,7 +14,7 @@ data = pd.read_csv('/data/' + filename + '.csv')
 
 def processMethod(method):
     ff = data[data['method'] == method]
-    ff.drop(columns=['method', 'value'], inplace=True)
+    ff = ff.drop(columns=['method', 'value'])
     ff = ff.groupby(['architecture', 'param']).mean()
     ff = ff.reset_index()
 
