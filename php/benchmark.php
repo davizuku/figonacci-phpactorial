@@ -10,7 +10,8 @@ use FigonacciPhpactorial\Client\LocalClient;
 
 include __DIR__ . '/vendor/autoload.php';
 
-$options = getopt('', ['epochs:', 'max_value:']);
+$options = getopt('', ['method:', 'epochs:', 'max_value:']);
+$method = strtolower($options['method'] ?? 'fibfac');
 $epochs = $options['epochs'] ?? 1;
 $maxValue = $options['max_value'] ?? 1;
 
@@ -36,14 +37,17 @@ foreach (range(1, $epochs) as $iter) {
     shuffle($architectures);
     foreach ($values as $v) {
         foreach ($architectures as $arch) {
-            $t0 = microtime(true);
-            $fibFac = $clients[$arch]->fibFac($v);
-            $t1 = microtime(true);
-            echo implode(',', [$arch, 'fibFac', $v, $fibFac, $t1 - $t0]) . "\n";
-            $t0 = microtime(true);
-            $text = $clients[$arch]->textLen(pow(10, $v));
-            $t1 = microtime(true);
-            echo implode(',', [$arch, 'textLen', "10^$v", strlen($text), $t1 - $t0]) . "\n";
+            if ($method == 'fibfac') {
+                $t0 = microtime(true);
+                $fibFac = $clients[$arch]->fibFac($v);
+                $t1 = microtime(true);
+                echo implode(',', [$arch, 'fibFac', $v, $fibFac, $t1 - $t0]) . "\n";
+            } elseif ($method == 'textlen') {
+                $t0 = microtime(true);
+                $text = $clients[$arch]->textLen(pow(10, $v));
+                $t1 = microtime(true);
+                echo implode(',', [$arch, 'textLen', "10^$v", strlen($text), $t1 - $t0]) . "\n";
+            }
         }
     }
 }
