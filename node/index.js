@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 
 app.get('/', function (req, res) {
+    console.log("Hande GET on route: " + req.path)
     res.send('Hello World!');
 });
 
