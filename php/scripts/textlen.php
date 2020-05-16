@@ -1,5 +1,7 @@
 <?php
 
+ini_set('memory_limit', '2G');
+
 use FigonacciPhpactorial\Client\LocalClient;
 
 require __DIR__ . '/../vendor/autoload.php';

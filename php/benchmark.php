@@ -1,6 +1,7 @@
 <?php
 
-use FigonacciPhpactorial\Client\ClientInterface;
+ini_set('memory_limit', '2G');
+
 use FigonacciPhpactorial\Client\GrpcClient;
 use FigonacciPhpactorial\Client\HttpClient;
 use FigonacciPhpactorial\Client\GrpcPhpClient;

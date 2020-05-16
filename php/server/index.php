@@ -1,5 +1,7 @@
 <?php
 
+ini_set('memory_limit', '2G');
+
 include __DIR__ . '/../vendor/autoload.php';
 
 use DI\Container;
