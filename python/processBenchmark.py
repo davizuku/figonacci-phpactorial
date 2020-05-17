@@ -25,7 +25,10 @@ for arch, df in ff.groupby('architecture'):
     i += 1
 ax.set_title("Benchmark " + filename)
 plt.ylabel("Execution time (s)")
-plt.xlabel("Problem size")
+if "textlen" in filename.lower():
+    plt.xlabel("Problem size (2^x)")
+else:
+    plt.xlabel("Problem size")
 legend = ax.legend(bbox_to_anchor=(1, 1))
 ax.grid('on')
 plt.savefig(
