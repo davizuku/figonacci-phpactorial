@@ -136,7 +136,7 @@ PNG files generated in:  - ./benchmarks/readme-example-fibfac.png
 
 The following data has been produced by the following commands:
 - `make benchmark example fibfac 10 30`
-- `make benchmark textlen 10 7`.
+- `make benchmark textlen 10 7`
 
 All the data is available under the `benchmarks` folder.
 
