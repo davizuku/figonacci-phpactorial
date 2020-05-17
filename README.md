@@ -46,25 +46,25 @@ You can find the code for this approach [here](https://github.com/davizuku/figon
 This code is run on the `php-http` service of the [docker-compose file](https://github.com/davizuku/figonacci-phpactorial/blob/master/docker-compose.yml)
 
 
-### HTTP GO + PHP
+### HTTP GO/Node + PHP
 
-Remote service runs GO only to handle HTTP requests & responses. However, the logic of the replaced module still runs on PHP.
+Remote service runs GO/Node only to handle HTTP requests & responses. However, the logic of the replaced module still runs on PHP.
 
 ![http-go-php](https://github.com/davizuku/figonacci-phpactorial/raw/master/img/http-go-php.png)
 
-You can find the HTTP go service in [this file](https://github.com/davizuku/figonacci-phpactorial/blob/master/golang/cmd/http.go). The endpoint for this scenario is `/fibfac-php`
+You can find the HTTP GO service in [this file](https://github.com/davizuku/figonacci-phpactorial/blob/master/golang/cmd/http.go). The endpoint for this scenario is `/fibfac-php`. This code is run on the `go-http` service of the [docker-compose file](https://github.com/davizuku/figonacci-phpactorial/blob/master/docker-compose.yml)
 
-This code is run on the `go-http` service of the [docker-compose file](https://github.com/davizuku/figonacci-phpactorial/blob/master/docker-compose.yml)
+You can find the HTTP Node service in [this file](https://github.com/davizuku/figonacci-phpactorial/blob/master/node/index.js). The endpoint for this scenario is `/fibfac-php`. This code is run on the `node-http` service of the [docker-compose file](https://github.com/davizuku/figonacci-phpactorial/blob/master/docker-compose.yml).
 
-### HTTP GO
+### HTTP GO/Node
 
-Remote service runs exclusively GO and communications are performed via HTTP requests.
+Remote service runs exclusively GO/Node and communications are performed via HTTP requests.
 
-![http-go](https://github.com/davizuku/figonacci-phpactorial/raw/master/img/http-go.png)
+![http-go](https://github.com/davizuku/figonacci-phpactorial/raw/master/img/http-go.node.png)
 
-You can find the HTTP go service in [this file](https://github.com/davizuku/figonacci-phpactorial/blob/master/golang/cmd/http.go). The endpoint for this scenario is `/fibfac`
+You can find the HTTP GO service in [this file](https://github.com/davizuku/figonacci-phpactorial/blob/master/golang/cmd/http.go). The endpoint for this scenario is `/fibfac`. This code is run on the `go-http` service of the [docker-compose file](https://github.com/davizuku/figonacci-phpactorial/blob/master/docker-compose.yml).
 
-This code is run on the `go-http` service of the [docker-compose file](https://github.com/davizuku/figonacci-phpactorial/blob/master/docker-compose.yml)
+You can find the HTTP Node service in [this file](https://github.com/davizuku/figonacci-phpactorial/blob/master/node/index.js). The endpoint for this scenario is `/fibfac`. This code is run on the `node-http` service of the [docker-compose file](https://github.com/davizuku/figonacci-phpactorial/blob/master/docker-compose.yml).
 
 ### GRPC GO+PHP
 
@@ -74,7 +74,7 @@ Remote service does not runs GO only to handle GRPC requests & responses. Howeve
 
 You can find the GRPC go service in [this file](https://github.com/davizuku/figonacci-phpactorial/blob/master/golang/cmd/grpc.go). This service is described in [this proto file](https://github.com/davizuku/figonacci-phpactorial/blob/master/golang/api/benchmark.proto) and the method that corresponds to this scenario is `Benchmark.FibFacPhp`.
 
-This code is run on the `go-grpc` service of the [docker-compose file](https://github.com/davizuku/figonacci-phpactorial/blob/master/docker-compose.yml)
+This code is run on the `go-grpc` service of the [docker-compose file](https://github.com/davizuku/figonacci-phpactorial/blob/master/docker-compose.yml).
 
 
 ### GRPC GO
@@ -85,7 +85,7 @@ Remote service runs exclusively GO and communications are performed via HTTP req
 
 You can find the GRPC go service in [this file](https://github.com/davizuku/figonacci-phpactorial/blob/master/golang/cmd/grpc.go). This service is described in [this proto file](https://github.com/davizuku/figonacci-phpactorial/blob/master/golang/api/benchmark.proto) and the method that corresponds to this scenario is `Benchmark.FibFac`.
 
-This code is run on the `go-grpc` service of the [docker-compose file](https://github.com/davizuku/figonacci-phpactorial/blob/master/docker-compose.yml)
+This code is run on the `go-grpc` service of the [docker-compose file](https://github.com/davizuku/figonacci-phpactorial/blob/master/docker-compose.yml).
 
 
 ## Benchmark
@@ -164,7 +164,7 @@ Surprisingly, Node is not capable of keeping the scalability nor stability when 
 
 ## Disclaimers
 
-- `FibFac` and `TextLen` implementations in GO include an optimization using go routines. This is an optimization taking profit of one of the limitations of PHP services, which is parallelism, as stated [here](https://github.com/krakjoe/pthreads#sapi-support)
+- `FibFac` and `TextLen` implementations in GO include an optimization using go routines. This is an optimization taking profit of one of the limitations of PHP services, which is parallelism, as stated [here](https://github.com/krakjoe/pthreads#sapi-support).
 - Memoization or other algorithmic optimizations have not been applied to the `FibFac` implementation to increase the CPU demand and simulate higher load to the services.
 - All services are running on local Dockers, so their response times should be higher in real scenarios compared to `localPhp`. However, these benchmarks focus not only on response times but also on scalability. After all, all "non-local" services run under the same conditions and transfer the same amount of data, so the comparisons between them are still valid.
 - In order to not give special advantage on any language, all of the services are using a framework for the service. Probably using native, vanilla code of each language could have provided better results for them, but they will not be realistic. In production, services are usually built over some sort of framework. Here the ones that have been used:
