@@ -140,12 +140,11 @@ The following data has been produced by the following commands:
 
 All the data is available under the `benchmarks` folder.
 
-![results](https://github.com/davizuku/figonacci-phpactorial/raw/master/benchmarks/example-fibfac.png)
-![results](https://github.com/davizuku/figonacci-phpactorial/raw/master/benchmarks/example-textlen.png)
-
 ### FibFac
 
 GO easy parallelization capability makes its services more scalable. As other implementations grow exponentially in time, the growth curve of GO services stays pretty flat.
+
+![results](https://github.com/davizuku/figonacci-phpactorial/raw/master/benchmarks/example-fibfac.png)
 
 Let's zoom in the common flat part for those calls under 30:
 
@@ -158,6 +157,8 @@ Additionally, it can be observed that the more PHP is used, the more variable is
 ### TextLen
 
 Again, GO growth curve is impressive compared to other implementations. In this problem, PHP memory management is quite poor and all services using PHP seem to converge for large inputs. Non-PHP services, grow more slowly and stable.
+
+![results](https://github.com/davizuku/figonacci-phpactorial/raw/master/benchmarks/example-textlen.png)
 
 Surprisingly, Node is not capable of keeping the scalability nor stability when calling PHP scripts during request time. For inputs above 2^25 it looks like PHP is getting more and more impact on the response time.
 
