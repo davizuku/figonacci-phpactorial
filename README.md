@@ -167,3 +167,7 @@ Surprisingly, Node is not capable of keeping the scalability nor stability when 
 - `FibFac` and `TextLen` implementations in GO include an optimization using go routines. This is an optimization taking profit of one of the limitations of PHP services, which is parallelism, as stated [here](https://github.com/krakjoe/pthreads#sapi-support)
 - Memoization or other algorithmic optimizations have not been applied to the `FibFac` implementation to increase the CPU demand and simulate higher load to the services.
 - All services are running on local Dockers, so their response times should be higher in real scenarios compared to `localPhp`. However, these benchmarks focus not only on response times but also on scalability. After all, all "non-local" services run under the same conditions and transfer the same amount of data, so the comparisons between them are still valid.
+- In order to not give special advantage on any language, all of the services are using a framework for the service. Probably using native, vanilla code of each language could have provided better results for them, but they will not be realistic. In production, services are usually built over some sort of framework. Here the ones that have been used:
+  - PHP: [Slim 4](http://www.slimframework.com/)
+  - GO: [Gorilla](http://www.gorillatoolkit.org/)
+  - Node: [Expresss](http://expressjs.com/)
