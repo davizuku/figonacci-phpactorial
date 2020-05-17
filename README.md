@@ -138,7 +138,7 @@ The following data has been produced by the following commands:
 - `make benchmark example fibfac 10 30`
 - `make benchmark textlen 10 7`
 
-All the data is available under the `benchmarks` folder.
+All the data is available under the [benchmarks](https://github.com/davizuku/figonacci-phpactorial/tree/master/benchmarks) folder.
 
 ### FibFac
 
