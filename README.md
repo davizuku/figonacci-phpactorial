@@ -90,74 +90,79 @@ This code is run on the `go-grpc` service of the [docker-compose file](https://g
 
 ## Benchmark
 
-The benchmark consists of a series of repetitions or `epochs` of the process of computing `FibFac(x)` for `x` from 1 to `max-value`. Randomization is performed on each epoch to avoid possible optimizations on repeated calls to the same service.
+The benchmark consists of a series of repetitions or `epochs` of the process of computing `FibFac(x)` or `TextLen(2^x)` for `x` from 1 to `max-value`. Since each algorithm has different "limits" the argument `method` is used to choose which to benchmark. Randomization is performed on each epoch to avoid possible optimizations on repeated calls to the same service.
 
 Data is collected into a CSV file and then it is processed by the `painter` [service](https://github.com/davizuku/figonacci-phpactorial/blob/master/docker-compose.yml) to generate a final graph of the benchmarks.
 
 Execute `make benchmark` to reproduce the results on this page.
 
-For example, after executing `make benchmark readme-example 1 3`, you should see something similar to:
+For example, after executing `make benchmark readme-example fibfac 1 3`, you should see something similar to:
 
 ```
 Starting to generate CSV file...
 
 architecture,method,param,value,time
-httpPhp,fibFac,3,9,0.94866299629211
-httpPhp,textLen,10^3,1000,0.69463205337524
-httpGo,fibFac,3,9,0.022700071334839
-httpGo,textLen,10^3,1000,0.0052220821380615
-httpGoPhp,fibFac,3,9,0.2314510345459
-httpGoPhp,textLen,10^3,1000,0.18640899658203
-localPhp,fibFac,3,9,0.026846170425415
-localPhp,textLen,10^3,1000,0.018160820007324
-grpcGo,fibFac,3,9,0.07497501373291
-grpcGo,textLen,10^3,1000,0.020685911178589
-grpcGoPhp,fibFac,3,9,0.25618886947632
-grpcGoPhp,textLen,10^3,1000,0.24194407463074
-httpPhp,fibFac,1,2,0.83478808403015
-httpPhp,textLen,10^1,10,0.69294595718384
-httpGo,fibFac,1,2,0.0020709037780762
-httpGo,textLen,10^1,10,0.0014779567718506
-httpGoPhp,fibFac,1,2,0.21976208686829
-httpGoPhp,textLen,10^1,10,0.23144197463989
-localPhp,fibFac,1,2,1.5974044799805E-5
-localPhp,textLen,10^1,10,2.8133392333984E-5
-grpcGo,fibFac,1,2,0.0011518001556396
-grpcGo,textLen,10^1,10,0.012670993804932
-grpcGoPhp,fibFac,1,2,0.14927291870117
-grpcGoPhp,textLen,10^1,10,0.20850610733032
-httpPhp,fibFac,2,4,0.35487985610962
-httpPhp,textLen,10^2,100,0.34541583061218
-httpGo,fibFac,2,4,0.0022380352020264
-httpGo,textLen,10^2,100,0.0027408599853516
-httpGoPhp,fibFac,2,4,0.23408722877502
-httpGoPhp,textLen,10^2,100,0.22459983825684
-localPhp,fibFac,2,4,1.6927719116211E-5
-localPhp,textLen,10^2,100,0.00040078163146973
-grpcGo,fibFac,2,4,0.0035159587860107
-grpcGo,textLen,10^2,100,0.014184951782227
-grpcGoPhp,fibFac,2,4,0.183758020401
-grpcGoPhp,textLen,10^2,100,0.2317910194397
+httpNode,fibFac,3,9,0.12454891204834
+httpGoPhp,fibFac,3,9,0.46756601333618
+grpcGoPhp,fibFac,3,9,0.32606291770935
+httpPhp,fibFac,3,9,0.6788649559021
+httpGo,fibFac,3,9,0.0075061321258545
+localPhp,fibFac,3,9,0.031401872634888
+httpNodePhp,fibFac,3,9,0.19814491271973
+grpcGo,fibFac,3,9,0.0076329708099365
+httpNode,fibFac,1,2,0.0048940181732178
+httpGoPhp,fibFac,1,2,0.22060894966125
+grpcGoPhp,fibFac,1,2,0.27100086212158
+httpPhp,fibFac,1,2,0.46150016784668
+httpGo,fibFac,1,2,0.00087499618530273
+localPhp,fibFac,1,2,6.1988830566406E-6
+httpNodePhp,fibFac,1,2,0.14736199378967
+grpcGo,fibFac,1,2,0.0016500949859619
+httpNode,fibFac,2,4,0.0049290657043457
+httpGoPhp,fibFac,2,4,0.15628004074097
+grpcGoPhp,fibFac,2,4,0.19772601127625
+httpPhp,fibFac,2,4,0.42020702362061
+httpGo,fibFac,2,4,0.0035560131072998
+localPhp,fibFac,2,4,1.5974044799805E-5
+httpNodePhp,fibFac,2,4,0.20602202415466
+grpcGo,fibFac,2,4,0.0010449886322021
 
-CSV file generated in:  ./benchmarks/readme-example.csv
+CSV file generated in:  ./benchmarks/readme-example-fibfac.csv
 Starting processing data...
-PNG files generated in:
-     - ./benchmarks/fibFac-readme-example.png
-     - ./benchmarks/textLen-readme-example.png
+PNG files generated in:  - ./benchmarks/readme-example-fibfac.png
 ```
 
 ## Results
 
-The following data has been produced by the command `make benchmark example 10 30` for `FibFac` and `make benchmark 10 7` for `TextLen`. All the data is available under the `benchmarks` folder.
+The following data has been produced by the following commands:
+- `make benchmark example fibfac 10 30`
+- `make benchmark textlen 10 7`.
+
+All the data is available under the `benchmarks` folder.
 
 ![results](https://github.com/davizuku/figonacci-phpactorial/raw/master/benchmarks/example-fibfac.png)
 ![results](https://github.com/davizuku/figonacci-phpactorial/raw/master/benchmarks/example-textlen.png)
 
-As you can see, only pure GO services overpass `localPhp` implementation. However, the benefit of simply replacing the Request&Response management from PHP to GO represents 300% benefit in response time.
+### FibFac
 
-Moreover, GO easy parallelization capability makes its services more scalable as other implementations grow exponentially in time.
+GO easy parallelization capability makes its services more scalable. As other implementations grow exponentially in time, the growth curve of GO services stays pretty flat.
+
+Let's zoom in the common flat part for those calls under 30:
+
+![results](https://github.com/davizuku/figonacci-phpactorial/raw/master/benchmarks/example-fibfac-le-30.png)
+
+As you can see, only services not using PHP overpass `localPhp` implementation. However, the benefit of simply replacing the Request&Response management from PHP to GO or NodeJS reduces to less than 50% the response time with respect of `httpPhp` service.
+
+Additionally, it can be observed that the more PHP is used, the more variable is the response time over network. Pure Node and GO services keep their response times stable and low for all the requests.
+
+### TextLen
+
+Again, GO growth curve is impressive compared to other implementations. In this problem, PHP memory management is quite poor and all services using PHP seem to converge for large inputs. Non-PHP services, grow more slowly and stable.
+
+Surprisingly, Node is not capable of keeping the scalability nor stability when calling PHP scripts during request time. For inputs above 2^25 it looks like PHP is getting more and more impact on the response time.
 
 ## Disclaimers
 
 - `FibFac` and `TextLen` implementations in GO include an optimization using go routines. This is an optimization taking profit of one of the limitations of PHP services, which is parallelism, as stated [here](https://github.com/krakjoe/pthreads#sapi-support)
 - Memoization or other algorithmic optimizations have not been applied to the `FibFac` implementation to increase the CPU demand and simulate higher load to the services.
+- All services are running on local Dockers, so their response times should be higher in real scenarios compared to `localPhp`. However, these benchmarks focus not only on response times but also on scalability. After all, all "non-local" services run under the same conditions and transfer the same amount of data, so the comparisons between them are still valid.
